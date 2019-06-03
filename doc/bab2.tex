@@ -1,0 +1,321 @@
+%-----------------------------------------------------------------------------%
+\chapter{\babDua}
+%-----------------------------------------------------------------------------%
+
+%-----------------------------------------------------------------------------%
+\section{Pengukuran}
+%-----------------------------------------------------------------------------%
+Terdapat perbedaan formulasi\cite{fetter}, tetapi tetap ekuivalen secara matematis, terhadap fenomena mekanika kuantum, yakni formulasi Schrodinger dan formulasi Heisenberg. Pertama-tama nilai ekspetasi dari suatu operator $\mathcal{O}$ dari keadaan $\Psi$ adalh
+\begin{align}
+\bar{\mathcal{O}} = \left\langle \Psi | \mathcal{O} | \Psi \right\rangle
+\end{align}
+Kedua perbedaan formulasi tersbut pada dasarnya dilihat dari evolusi waktu pada sistem yang keterbergantungan waktunya di kuantitas keadaan $\Psi$, atau keterbergantungan waktunya berada pada operator $\mathcal{O}$, atau bahkan kombinasi keduanya. Disini akan dibahas sedikit mengenai kedua formulasi tersebut, lalu kemudian membahas kuantitas waktu imajiner dan pengaruh temperatur berhingga.
+
+\subsection{Formulasi Schrodinger}
+Pada formulasi ini, keterbergantungan terhadap waktu berada pada kuantitas keadaan $\Psi(t)$. Evolusi waktu sistemnya ditentukan oleh persamaan Schrodinger bergantung terhada waktu
+\begin{align}
+i\hbar \frac{\partial}{\partial t} \left\vert \Psi(t) \right\rangle = H\left\vert \Psi(t) \right\rangle
+\end{align}
+Persamaan ini dapat secara formal diselesaikan untuk Hamiltonian yang tidak bergantung dengan waktu,
+\begin{align}
+\left\vert \Psi(t) \right\rangle = U(t) \left\vert \Psi(t = 0) \right\rangle
+\end{align}
+dimana
+\begin{align}
+U(t) = e^{-itH}
+\end{align}
+adalah operator unitary evolusi waktu.
+
+\subsection{Formulasi Heisenberg}
+Dalam formulasi Heisenberg, keterbergantungan terhadap waktu ditentukan oleh operator $\mathcal{O}(t)$, sedangkan $\Psi(t)$ tidak bergantung dengan waktu. $\mathcal{O}(t)$ memiliki hubungan dengan formulasi Schrodinger melalui
+\begin{align}
+\mathcal{O}(t) = e^{itH} \mathcal{O} e^{-itH}
+\end{align}
+Nilai ekspetasi sama untuk kedua formulasi, hal ini mudah kita tunjukkan, dimana
+\begin{align}
+\bar{\mathcal{O}}(t) = \left\langle \Psi(t) | \mathcal{O} | \Psi(t) \right\rangle = \left\langle \Psi(t) | U^\dagger \mathcal{O} | \Psi(t) U \right\rangle = \left\langle \Psi | U(-t) \mathcal{O} U(t) | \Psi \right\rangle = \left\langle \Psi | \mathcal{O}(t) | \Psi \right\rangle
+\end{align}
+Dengan menggunakan \textit{grand canonical ensemble}, Hamiltonian ditulis $H' = H - \mu N$ dibanding $H$, yang dimana menggeser energi satu partikel sebesar $\mu$,
+\begin{align}
+H - \mu N = \sum_{n\mathbf{k}\sigma} (\epsilon_{n\mathbf{k}} - \mu ) c^\dagger_{n\mathbf{k}\sigma}c_{n\mathbf{k}\sigma}
+\end{align}
+dimana $n$ adalah tingkat keadaan energi, $\mathbf{k}$ adalah point kisi di ruang momentum, $\sigma$ adalah keadaan spin partikel,$\epsilon_{n\mathbf{k}}$ adalah relasi dispersi yang didapatkan dari transformasi fourier, dan $c^\dagger_{n\mathbf{k}\sigma}c_{n\mathbf{k}\sigma}$ masing-masing adalah operator kreasi dan anihilasi pada formalisme kuantisasi kedua (\textit{second quantization}).
+
+\subsection{Waktu Imajiner}
+Akan sangat mudah untuk menghitung rata-rata secara termis menggunakan waktu imajiner $\tau$ dibanding kuantitas waktu asli. Dimana $t = -i\tau$. Evolusi waktu operator $U(t)$ pada persamaan (2.4) menjadi berperilaku eksponensial terhadap waktu imajiner, dibanding berperilaku osilasi pada waktu riil,
+\begin{align}
+U(t = -i\tau) = e^{-\tau H}
+\end{align}
+pada formulasi Heisenberg operator yang bergantung dengan waktu ditulis sebagai
+\begin{align}
+\mathcal{O}(t = -i\tau) = e^{\tau H} \mathcal{O} e^{-\tau H}
+\end{align}
+jika menggunakan variabel $\tau$, maka waktu imajiner secara implisit digunakan.
+
+\subsection{Temperatur Berhingga}
+Mari kita pertimbangkan sistem termodinamika yang memiliki hamiltonian $H$ pada temperatur berhingga $T$, volume $V$ dan potensial kimia $\mu$. Jumlah partikel $N = \sum_{i} c^\dagger_i c_i$ adalah operator yang dapat diukur dan keadaan eigen $\left\vert \Psi_i \right\rangle$ memenuhi
+\begin{align}
+H \left\vert \Psi_i \right\rangle &= E_i \left\vert \Psi_i \right\rangle\\
+N \left\vert \Psi_i \right\rangle &= N_i \left\vert \Psi_i \right\rangle
+\end{align}
+Operator $H' = H - \mu N$, dengan nilai eigen $E'_i = E_i - \mu N_i$, akan membuat bentuk \textit{grand canonical ensemble} sama halnya dengan \textit{canonical ensemble}.
+
+Jika diketahui keadaan eigen, pengukuran suatu kuantitas dapat dilakukan dengan merata-rata kan keadaan eigen $\left\vert \Psi_i \right\rangle$ yang sesuai dengan berat probabilitas pada \textit{grand canonical ensemble}
+\begin{align}
+\mathcal{P}_i = \frac{\exp(-\beta E'_i)}{\sum_n \exp(-\beta E'_i)}
+\end{align}
+dimana $\beta = 1 / k_BT$. Dengan mengkonstruksikan kuantitas operator matriks densitas
+\begin{align}
+\rho = \exp(-\beta H')
+\end{align}
+didapatkan
+\begin{align}
+\rho_i &= \left\langle \Psi_i \vert \rho \vert \Psi_i \right\rangle\\
+\mathcal{Z} = \sum_i \rho_i &= \sum_i \left\langle \Psi_i \vert \rho \vert \Psi_i \right\rangle = \text{Tr} \rho\\
+\mathcal{P}_i &= \frac{\rho_i}{\mathcal{Z}}
+\end{align}
+dimana $\mathcal{Z}$ adalah fungsi partisi pada \textit{grand canonical ensemble} dan Tr adalah nilai \textit{trace} dari suatu operator. Notasi ini menyederhanakan pengukuran kuantitas yang dapat diukur, 
+\begin{align}
+\left\langle \mathcal{O}\right\rangle = \sum_i \mathcal{P}_i \left\langle \Psi_i \vert \mathcal{O} \vert \Psi_i \right\rangle = \sum_i \frac{\rho_i}{\mathcal{Z}}\left\langle \Psi_i \vert \mathcal{O} \vert \Psi_i \right\rangle = \frac{1}{\mathcal{Z}}\sum_i \left\langle \Psi_i \vert \rho_i\mathcal{O} \vert \Psi_i \right\rangle = \frac{1}{\mathcal{Z}} \text{Tr} \mathcal{O}\rho
+\end{align}
+Sehingga pengukuran dapat dihitung dengan melihat rasio dari dua \textit{trace}. Dikarenakan \textit{trace} bersifat invarian, maka pemilihan representasi basis dapat digunakan apa saja, selama basis tersebut adalah set lengkap. Hal ini sangat memudahkan perhitungan, dikarenakan biasanya basis dari keadaan eigen pada suatu Hamiltonian jarang diketahui.
+
+%-----------------------------------------------------------------------------%
+\section{Fungsi Green}
+%-----------------------------------------------------------------------------%
+
+Fungsi Green adalah nilai ekspetasi yang bergantung terhadap waktu yang merupakan produk dari suatu operator. Properti dari dua operator fungsi Green $A$ dan $B$ tidak harus bersifat hermitian. Pada subab ini akan dilihat hubungan yang sederhana antara fungsi spektral dan fungsi Green. Fungsi Green juga sangat memudahkan perhitungan untuk sistem yang berinteraksi melalui persamaan Dyson.
+
+\subsection{Fungsi Green Propagator}
+Fungsi Green termis dari operator $A$ dan $B$ pada waktu imajiner pada formulasi Heisenberg didefinisikan sebagai
+\begin{align}
+G(\tau) =  G_{A,B}(\tau) = - \left\langle \text{T}\left\lbrace A(\tau) B(0) \right\rbrace \right\rangle
+\end{align}
+dimana $\left\langle \right\rangle$ adalah rata-rata termis. Hamiltonian yang bergantung terhadap waktu diasumsikan bersifat invarian terhadap waktu. Sehingga hal ini membuat fungsi Green hanya bergantung pada selisih waktu antar dua kejadian $\tau = \tau_2 - \tau_1$. $A,B$ adalah operator Heisenberg dengan $A(\tau) = e^{\tau H'} A e^{-\tau H'}$ dan $H' = H - \mu N$. T adalah operator \textit{time-ordering}. T mengganti susunan operasi dari operator $A$ dan $B$ disaat $\tau$ bernilai negatif. Jika kedua $A,B$ adalah fungsi genap dari operator fermionik, maka T juga mengganti tanda $\pm$ disaat $\tau < 0$.
+
+Propagator waktu imajiner didefinisikan pada rentang $\tau \in [-\beta,\beta]$. Dikarenakan sifat invarian dari \textit{trace} dalam permutasi siklik, maka fungsi Green bersifat anti-periodik. Hal ini dilihat saat $\tau < 0$ dan menggunakan rata-rata termis,
+\begin{align}
+G(\tau) &= \left\langle B(0) A(\tau) \right\rangle = \frac{1}{Z} \text{Tr} e^{-\beta H} B(0) A(\tau) \notag \\
+&= \frac{1}{Z}\text{Tr} A(\tau) e^{-\beta H} B(0) = \frac{1}{Z} \text{Tr} e^{-\beta H} e^{\beta H} A(\tau) e^{-\beta H} B(0)\notag\\
+&= - G(\tau + \beta)
+\end{align}
+
+Pada sifat periodik kuantitas $G(\tau)$ pada rentang $\tau \in [-\beta,\beta]$, maka dapat dibentuk representasi fourier sebagai berikut
+\begin{align}
+G(\tau) = \frac{1}{\beta} \sum_{n = -\infty}^\infty e^{-i\omega_n \tau}G(i\omega_n)
+\end{align}
+dengan
+\begin{align}
+G(i\omega_n) = \frac{1}{2} \int_{-\beta}^\beta d\tau \; e^{i\omega_n\tau}G(\tau) = \int_0^\beta d\tau \; e^{i\omega_n\tau}G(\tau)
+\end{align}
+dan $\omega_n$  = $\pi n/\beta$. Dengan menggunakan anti-periodisitas pada persamaan (2.19), maka hanya $n$ yang ganjil saja yang bertahan, sehingga
+\begin{align}
+\omega_n = \frac{(2n-1)\pi}{\beta}
+\end{align}
+$\omega_n$ disebut sebagai frekuensi matsubara. 
+
+Fungsi spektral $\rho(\omega)$ berkorespodensi dari nilai set lengkap $G(i\omega_n)$\cite{spektral},
+\begin{align}
+G(i\omega_n) = \int_{-\infty}^{\infty}  d\omega \; \frac{\rho(\omega)}{i\omega_n - \omega}
+\end{align}
+hal ini dapat dilihat juga dari kasus spesial 
+\begin{align}
+G(z) = \int_{-\infty}^\infty d\omega \; \frac{\rho(\omega)}{z-\omega}
+\end{align}
+untuk fungsi $G(z)$ saat $z = i\omega_n$. $G(z)$ bersifat analitik pada bawah dan atas bidang sumbu imajiner berdasarkan teorema Sokhotsi-Plemelj\cite{sokhotsi}. Dikarenakan fungsi spektral unik, maka \textit{analytical continuation} dari $G(i\omega_n)$ ke $G(z)$ juga unik, (lihat gambar 2.1). Dengan memasukkan representasi matsubara pada (2.24) ke (2.20), didapat
+\begin{align}
+G(\tau) &= \frac{1}{\beta} \sum_{n = -\infty}^\infty e^{-i\omega_n\tau}G(i\omega_n) = \int_{-\infty}^\infty d\omega \; \rho(\omega) \frac{1}{\beta} \sum_{n = -\infty}^\infty \frac{e^{-i\omega_n\tau}}{i\omega_n - \omega}\notag\\
+&= \begin{cases}
+\int_{-\infty}^\infty d\omega \; \rho(\omega) \frac{-e^{\omega\tau}}{e^{-\beta\omega}+1}, \quad \text{jika}\; 0 <\tau<\beta,\\
+-G(\tau + \beta), \quad \text{jika} \; -\beta < \tau < 0
+\end{cases}
+\end{align}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.50\textwidth]
+		{pics/ancont.png}
+	\caption{\textit{Analytical Continuation} fungsi $G(z)$ dari sumbu imajiner (matsubara) ke sumbu riil}
+\end{figure}
+
+Fungsi spektral berkaitan dengan nilai imajiner dari fungsi Green pada sumbu riil. Untuk nilai infinitesimal $0^+$ yang positif, persamaan (2.24) menjadi
+\begin{align}
+- \frac{1}{\pi} \text{Im} [ G(\omega' + i0^+) ] &= -\frac{1}{\pi} \int_{-\infty}^\infty d\omega \; \text{Im} \left[ \frac{\rho(\omega)}{\omega' + i0^+ - \omega}\right]\notag\\
+&= - \frac{1}{\pi} \int_{-\infty}^\infty d\omega \; \text{Im} \left[ \frac{\omega' - \omega - i0^+}{(\omega' - \omega)^2 + (0^+)^2} \right] \rho(\omega) \notag\\
+&= \int_{-\infty}^{\infty} d\omega \; \frac{1}{\pi} \frac{0^+}{(\omega' - \omega)^2 + (0^+)^2} \rho(\omega)
+\end{align}
+dimana distribusi Lorentzian menjadi fungsi delta dirac untuk lebar $0^+$ yang titik tengahnya berada pada $\omega = \omega'$, 
+\begin{align}
+\frac{1}{\pi} \frac{0^+}{(\omega' - \omega)^2 + (0^+)^2} = \delta(\omega' - \omega)
+\end{align}
+didapat
+\begin{align}
+\rho(\omega) = - \frac{1}{\pi} [ G(\omega' + i0^+) ]
+\end{align}
+persamaan (2.24) dapat dilihat sebagai \textit{analytical continuation} yang dapat dilakukan secara langsung dari fungsi Green pada sumbu riil ke titik $z$ pada sumbu kompleks. Sayangnya, untuk sebaliknya, dimana $G(i\omega_n)$ diketahui dan $\rho(\omega)$ tidak diketahui, maka ini dibutuhkan transformasi Hilbert pada persamaan (2.24) sebagai set integral dari persamaan, menjadikan proses \textit{analytical continuation} menjadi sulit dilakukan.
+
+%-----------------------------------------------------------------------------%
+\subsection{Fungsi Green yang Tidak Berinteraksi}
+%-----------------------------------------------------------------------------%
+Jika Hamiltonian sistem dapat ditulis sebagai jumlah suku yang tidak berinteraksi dan yang berinteraksi,
+\begin{align}
+H = H_0 + H_1
+\end{align}
+maka suku yang tidak berinteraksi akan memberikan fungsi Green yang tidak berinteraksi $G_{0,\bo{k}\sigma}(\omega)$, disebut juga sebagai \textit{bare propagator}. Tidak berinteraksi artinya adalah bahwa interkasi antar elektron diabaikan tetapi interaksi dengan potensial atom kisi dan potensial eksternal tetap ada. $G_{0,\bo{k}\sigma}(\omega)$ didefinisikan layaknya fungsi Green yang berinteraksi namun hanya menggunakan suku hamiltonian yang tidak berinteraksi,
+\begin{align}
+H_0 = \sum_{\bo{k}\sigma} \epsilon_\bo{k} c^\dagger_{\bo{k}\sigma} c_{\bo{k}\sigma}
+\end{align}
+dimana $\epsilon_\bo{k}$ adalah energi dispersi elektron untuk sistem yang tidak berinteraksi. Fungsi Greennya diberikan oleh
+\begin{align}
+G_{0,\bo{k}\sigma}(\tau) &= - \left\langle T c_{\bo{k}\sigma}(\tau)c^\dagger_{\bo{k}\sigma}(0)\right\rangle_0 \notag\\
+&= e^{-\tau(\epsilon_\bo{k} - \mu)}
+\begin{cases}
+-\left\langle 1 - c^\dagger_{\bo{k}\sigma}c_{\bo{k}\sigma} \right\rangle_0, \quad \text{jika} \; 0 < \tau < \beta\\
+\left\langle c^\dagger_{\bo{k}\sigma}c_{\bo{k}\sigma} \right\rangle_0 = \frac{1}{e^{\beta(\epsilon_\bo{k} - \mu)} + 1}, \quad \text{jika} \; -\beta < \tau < 0
+\end{cases}
+\end{align}
+dimana 
+\begin{align}
+\left\langle c^\dagger_{\bo{k}\sigma}c_{\bo{k}\sigma} \right\rangle_0 = \frac{1}{e^{\beta(\epsilon_{\bo{k}\sigma} - \mu)} + 1}
+\end{align}
+adalah jumlah okupansi yang diatur oleh distribusi Fermi-Dirac. Terlihat bahwa $G_{0,\bo{k}\sigma}(\tau = 0_-) = \left\langle c^\dagger_{\bo{k}\sigma} c_{\bo{k}\sigma} \right\rangle_0$. Dengan menggunakan transformasi fourier pada persamaan (2.31), maka fungsi Green matsubara yang tidak berinteraksi menjadi 
+\begin{align}
+G_{0,\bo{k}\sigma}(i\omega_n) = \frac{1}{i\omega_n - \epsilon_\bo{k} + \mu}
+\end{align}
+dikarenakan $i\omega_n$ secara eksplisit terbilang pada fungsi Green matsubara diatas, maka \textit{analytic continuation} dapat dilakukan secara langsung denga mengganti $i\omega_n \rightarrow z$, sehingga
+\begin{align}
+G_{0,\bo{k}\sigma}(z) = \frac{1}{z - \epsilon_\bo{k} + \mu}
+\end{align}
+maka fungsi spektral untuk fungsi Green yang tidak berinteraksi diatas adalah 
+\begin{align}
+\rho_{0,\bo{k}\sigma}(\omega) &= \lim_{\delta \rightarrow 0^+} - \frac{1}{\pi} \text{Im} [G_{0,\bo{k}\sigma}(\omega + i\delta) \notag\\
+&= \lim_{\delta \rightarrow 0^+} - \frac{1}{\pi} \text{Im} \left[ \frac{1}{\omega - \epsilon_\bo{k} + \mu + i\delta} \right]\notag\\
+&= \delta(\omega - \epsilon_\bo{k} + \mu)
+\end{align}
+sehingga diberikan momentum $\bo{k}$ maka elektron hanya bisa memiliki energi sebesar $\epsilon_\bo{k}$. Sehingga $\rho_\bo{k}(\omega)$ adalah pita energi dari sistem.
+
+%-----------------------------------------------------------------------------%
+\subsection{Persamaan Dyson}
+%-----------------------------------------------------------------------------%
+
+Fungsi Green yang berinteraksi, atau biasanya disebut juga sebagai \textit{dressed propagator}, dapat ditulis sebagai sumasih tak berhingga dari diagram Feynman\cite{spektral}. Sumasih secara formal dapat dihitung, sehingga menghasilkan persamaan Dyson
+\begin{align}
+G_{\bo{k}\sigma}(z) = \frac{1}{G^{-1}_{0,\bo{k}\sigma}(z) - \sum_\bo{k}(z)}
+\end{align}
+dimana persamaan ini menghubungkan \textit{bare propagator} dan \textit{dressed propagator}. Semua suku interaksi berada pada kuantitas \textit{self-energy} $\Sigma_\bo{k}(z) \in \mathbb{C}$. Berdasarkan persamaan (2.34) fungsi Green yang berinteraksi menghasilkan 
+\begin{align}
+G_{\bo{k}\sigma}(z) = \frac{1}{z - \epsilon_\bo{k} + \mu - \Sigma_\bo{k}(z)}
+\end{align}
+dengan menggunakan persamaan (2.28), maka fungsi spektral menjadi
+\begin{align}
+\rho_\bo{k}(\omega) = \frac{1}{\pi} \frac{-\text{Im}[\Sigma_\bo{k}(\omega)]}{(\omega - \epsilon_\bo{k} + \mu - \text{Re}[\Sigma_\bo{k}(\omega)])^2 + (-\text{Im}\Sigma_\bo{k}(\omega)])^2}
+\end{align}
+dikarenakan fungsi spektral bernilai non-negatif, maka nilai suku imajiner dari \textit{self-energy} harus bernilai non-positif. Untuk nilai \textit{self-energy} yang kecil maka sistem dapat dipandang sebagai \textit{Fermi liquid} dengan quasipartikel, dimana suku riil dari \textit{self-energy} beperilaku sebagai pergeseran energi dan suku imajiner sebagai perlebaran keadaan pada fungsi spektral. Pergeseran energi secara efektif, menormalisasikan massa quasipartikel dan lebar \textit{peak} sebanding dengan kebalikan dari paruh waktu quasipartikel. Untuk interaksi yang sangat kuat, puncak dari \textit{Fermi liquid} diganti dengan besar spektral secara kolektif.
+
+\textit{Self-energy} itu sendiri adalah sumasih tak berhingga dari semua diagram \textit{self-energy} yang tidak dapat direduksi kembali. Setelah \textit{self-energy} diketahui, maka fungsi Green dapat diketahui pula. Beberapa aproksimasi yang dilakukan dengan hanya mengambil beberapa bagian diagram saja dalam $\Sigma_\bo{k}$ diantaranya adalah Hartree-Fock, Random Phase Approximation atau Ladder Approximation\cite{ladder}. 
+
+%-----------------------------------------------------------------------------%
+\subsection{Fungsi Green Lokal}
+%-----------------------------------------------------------------------------%
+
+Dengan menjumlahkan semua nilai $\bo{k}$, maka fungsi Green lokal dapat didapatkan. Lebih tepatnya, fungsi Green lokal $G_\sigma(z)$ didefinisikan sebagai transformasi fourier spasial dari $G_{\bo{k}\sigma}(\omega)$ pada $\bo{r} = 0$,
+\begin{align}
+G_\sigma(z) = G_{\sigma,\bo{r} = 0}(z) = \frac{1}{\Lambda} \sum_\bo{k} G_{\bo{k}\sigma}(z)e^{i\bo{k}\cdot 0} = \frac{1}{\Lambda}
+\sum_\bo{k} \frac{1}{z - \epsilon_\bo{k} + \mu - \Sigma_\bo{k}(z)}
+\end{align}
+dimana $\Lambda$  adalah faktor normalisasi. Fungsi spektral menjadi jumlah keadaan lokal efektif (DOS)
+\begin{align}
+\rho(\omega) = -\frac{1}{\pi} \text{Im}[G(\omega + i0^+)] = \frac{1}{\Lambda}[G_\bo{k}(\omega + i0^+)] = \frac{1}{\Lambda}\sum_\bo{k} \rho_\bo{k} (\omega)
+\end{align}
+dimana $\lambda$ adalah volume pada ruang momentum, atau jumlah titik momentum yang dicacah. Untuk sistem yang tidak berinteraksi, dimana $\Sigma_\bo{k}(z) = 0$, maka fungsi Green lokal dan DOS dapat ditulis sebagai
+\begin{align}
+G_0(z) &= \frac{1}{\Lambda} \sum_\bo{k} \frac{1}{z - \epsilon_\bo{k} + \mu} \\
+\text{D}_0(\omega) &= \frac{1}{\Lambda} \sum_\bo{k} \rho_{0,\bo{k}}(\omega) = \frac{1}{\Lambda} \sum_\bo{k} \delta(\omega - \epsilon_\bo{k} + \mu )
+\end{align}
+$\text{D}_0(\omega)$ adalah DOS pada sistem yang tidak berinteraksi. Dikarenakan keterbergantungan terhadap momentum $\bo{k}$ hanya ada pada suku $\epsilon_\bo{k}$, maka sumasih terhadap momentum dapat diekspresikan sebagai integral terhadap energi dengan besar bobot sebesar $\text{D}_0(\omega)$ yang mengisyaratkan sebagai jumlah keadaan di energi $\omega$,
+\begin{align}
+G_0(z) = \frac{1}{\Lambda} \sum_\bo{k} \frac{1}{z - \epsilon_\bo{k} + \mu}  = \frac{1}{\Lambda} \sum_\bo{k} \frac{1}{z - \epsilon_\bo{k} + \mu} = \int d\xi \frac{\text{D}_0(\xi)}{z - \xi}
+\end{align}
+Hal ini tidak lain tidak bukan adalah transformasi Hilbert antara fungsi spektral dan fungsi Greennya.
+
+%-----------------------------------------------------------------------------%
+\subsection{Model Hubbard dan Transisi Mott}
+%-----------------------------------------------------------------------------%
+
+Untuk bisa menjelaskan sistem yang berinteraksi pada fisika zat mampat, digunakan model efektif yang menyederhanakan permasalahan seluruh struktur elektronik pada sistem, namun masih dapat menangkap fenomena fisisnya. Menyelesaikan hamiltonian 
+\begin{align}
+H = \sum_{ij\sigma} t_{ij} c^\dagger_{i\sigma} c_{j\sigma} + \frac{1}{2} \sum_{ijkl\sigma\sigma'} V_{ijkl} c^\dagger_{i\sigma} c^\dagger_{k\sigma'} c_{l\sigma'} c_{j\sigma}
+\end{align}
+dengan elemen matriks Hamiltoniannya
+\begin{align}
+t_{ij} &= \int d^3r f^\dagger_i(\bo{r}) \left( \frac{\bo{p}^2}{2m} + V_\text{ext}(\bo{r}) \right) f_j(\bo{r})\\
+V_{ijkl} &= \int d^3r \int d^3r' f^\dagger_i(\bo{r}) f_j(\bo{r}) V_{\text{e-e}}(\bo{r},\bo{r'}) f^\dagger_k(\bo{r'})f_l(\bo{r'})
+\end{align}
+tanpa adanya aproksimasi mustahil dilakukan. Untuk sistem yang terkolerasi kuat, elektron terlokalisasi di ruang disekitar atomik kisi $\bo{R}_i$. Dikarenakan sifat lokalisasi ini, elemen matriks $t_{ij}, V_{ijkl}$ pada persamaan (2.45, 2.46) dapat diaproksimasi. Kita memilih set basis dengan satu orbital per kisi atomik. Jika kita mengabaikan semua elemen non-diagonal pada suku interaksi (interkasi inter-orbital) dengan hanya melihat interaksi intra-orbital, kita dapatkan
+\begin{align}
+V_{ijkl} \approx U\delta_{ijkl}
+\end{align} 
+sehingga suku interaksi Hamiltonian menjadi
+\begin{align}
+H_I = U\sum_i n_{i\uparrow} n_{i\downarrow}
+\end{align}
+dimana $n_{i\sigma} = c^\dagger_{i\sigma} c_{i\sigma}$ sebagai operator jumlah okupansi. Adanya okupansi ganda pada satu kisi atomik akan mengambil energi sebesar $U$ dikarenakan adanya interaksi elektron-elektron dalam satu orbital tersebut. $H_I$ bersifat diagonal pada ruang riil. 
+
+Sedangkan elemen \textit{hopping} $t_{ij}$ dibatasi hanya untuk elemen orbital tetangga terdekatnya saja,
+\begin{align}
+t_{ij} \approx t_{ij}\delta_{ij}
+\end{align}
+sehingga
+\begin{align}
+H_0 = - t \sum_{\left\langle i,j \right\rangle, \sigma} \left( c^\dagger_{i\sigma} c_{j\sigma} + h.c. \right)
+\end{align}
+suku energi kinetik ini bersifat diagonal pada ruang momentum. Hal ini mengimplikasinya adanya keadaan yang diperluas pada ruang riil.
+
+Hamiltonian keseluruhan menjadi
+\begin{align}
+H = H_0 + H_I = -t\sum_{\left\langle i,j \right\rangle, \sigma} \left( c^\dagger_{i\sigma} c_{j\sigma} + h.c. \right) + U\sum_i n_{i\uparrow} n_{i\downarrow}
+\end{align}
+inilah model Hubbard yang diajukan pada tahun 1963 untuk mempelajari sistem dengan elektron yang saling berinterkasi\cite{hubbard}. Parameter pada model ini hanyalah $U/t$, yang menentukan sifat lokalisasi elektron. Untuk $U =0$, elektron bebas untuk loncat ke kisi tetangga terdekatnya dan Hamiltonian menjadi moel \textit{Tight-Binding} yang dapat diagonalisasi dengan transformasi fourier,
+\begin{align}
+H_0 = -t \sum_{\left\langle i,j \right\rangle, \sigma}  \left( c^\dagger_{i\sigma} c_{j\sigma} + h.c. \right) = \sum_{\bo{k},\sigma} \epsilon_\bo{k} c^\dagger_{\bo{k}\sigma} c_{\bo{k}\sigma}
+\end{align}
+dimana energi dispersi untuk elektron yang tidak berinteraksi adalah
+\begin{align}
+\epsilon_\bo{k} = -t \sum_{\left\langle 0,j \right\rangle}^d e^{-i\bo{k}\cdot \bo{R}_j}
+\end{align}
+dimana $d$ adalah jumlah tetangga terdekat. Diberikan $\epsilon_\bo{k}$, fungsi spektral yang tidak berinteraksi $\rho_0$ dapat dengan mudah dihitung pada persamaan (2.42). Sedangkan untuk kasus $t\rightarrow 0$, maka energi dispersi menjadi datar, yakni energinya tidak bergantung dengan momentum. Maka Hamiltonian tersisa diagonal pada ruang riil dengan nilai eigen yang berbeda sebesar $U$. Gambar (2.2) memperlihatkan gambaran dari model Hubbard. 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.80\textwidth]
+		{pics/hubbardpicture.png}
+	\caption{a) Ilustrasi atomik kisi dari model Hubbard, b) Elektron yang ter-delokalisasi membentuk logam ($\textit{Fermi Liquid}$), c) Elektron yang terlokalisasi membentuk isolator Mott}
+\end{figure}
+
+Pada kasus \textit{half-filling}, untuk nilai $U$ yang berhingga, maka keadaan energi dasar dari sistem adalah isolator antiferomagnetik, dan untuk $U = 0$ keadaan energi dasarnya bersifat logam. Kondisi tersebut hanyalah hasil aproksimasi dimana \textit{hopping} hanya melibatkan tetangga terdekat. Solusi paramagnetik juga dapat diperlihatkan dari model ini. Transisi orde pertama terjadi pada temperatur rendah, yakni transisi fasa logam ($U$ rendah) dan isolator ($U$ tinggi)\cite{mott-transition0}. Untuk interaksi yang lemah, sistem merupakan \textit{Fermi liquid} logam dimana quasipartikel mendominasi. Pada area isolator eksitasi kolektif magnetik timbul. Paruh waktu bertambah seiring dengan semakin rendahnya interaksi $U$\cite{magnetic-excitation}. Transisi metal-isolator yang bukan berasal dari perubahan temperatur pertama kali diajukan oleh Nevill F. Mott pada tahun 1945, sehingga transisi tersebut disebut sebagai transisi Mott. Kasus \textit{half-filling} memberikan nilai potensial kimia sebesar
+\begin{align}
+\mu = \frac{U}{2}
+\end{align}
+Untuk kasus elektron yang tidak berinteraksi, potensial kimia bernilai nol. Persamaan Dyson menghubungkan propagator sistem yang berinteraksi dan tidak berinteraksi, pada persamaan (2.36) untuk nilai $U$ yang konstan. Dikarenakan $\mu$ bertambah seiring bertambahnya interaksi, maka persamaan Dyson (2.36) menjadi
+\begin{align}
+G_{\bo{k}\sigma}(z) = \frac{1}{G^{-1}_{0,\bo{k}\sigma}(z) + \mu - \Sigma_\bo{k}(z)}
+\end{align}
+Kita dapat set $\mu = 0$ untuk kasus \textit{half-filling} dengan memodifikasi Hamiltonian Hubbard sedemikian rupa menjadi
+\begin{align}
+H = -t\sum_{\left\langle i,j \right\rangle, \sigma} \left( c^\dagger_{i\sigma} c_{j\sigma} + h.c. \right) + U\sum_i \left( n_{i\uparrow} - \frac{1}{2} \right) \left( n_{i\downarrow} - \frac{1}{2} \right)
+\end{align}
+
+Pada kasus paramagnetik, hal yang menarik sekaligus penting adalah bagaimaan DOS berevolusi diantara dua kondisi batas (Gambar 2.3). Pada besar interaksi yang menengah, DOS adalah campuran dari pita Hubbard dan quasipartikel. \textit{Dynamical Mean Field Theory}(DMFT) menawarkan deskripsi yang cukup akurat dalam menjelaskan 3 puncak pada DOS, yang dimana transisi Mott terjadi seiringnya proses transfer jumlah keadaan dari puncak quasipartikel ke pita Hubbard.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.90\textwidth]
+		{pics/mott-transition.png}
+	\caption{ Transisi Mott-Hubbard logam-isolator pada kisi Bethe. Seiring dengan betambahanya $U$ karakteristik 3 \textit{peak} muncul. Pada transisi fasa, puncak quasipartikel menghilang sepenuhnya dan tersisa dua pita Hubbard.}
+\end{figure}
+
+Transisi Mott-Hubbard pada kasus paramagnetik ini telah dipelajari dibanyak literatur\cite{mott-transition1,mott-transition2,mott-transition3,mott-transition4}. Fase diagram dari model Hubbard pada kisi Bethe dalam solusi paramagnetik dapat kita sketsa-kan seperti pada gambar (2.4). Fase diagram memperlihatkan adanya daerah koeksitensi antara metal dan isolator, yang memperlihatkan fenomena 3 puncak pada DOS. Pada temperatur kritis, transisi ini terjadi melewati daerah koeksistensi.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.70\textwidth]
+		{pics/phase-diagram-param.png}
+	\caption{ Ilustrasi dari diagram fasa transisi Mott-Hubbard logam-isolator. Transisi terjadi pada garis $U_c(T)$ dan dua garis yang membentuk daerah area tiga puncak pada DOS yakni garis $U_{c1}(T)$ untuk pada sisi logam, dan garis $U_{c2}(T)$ pada sisi isolator.}
+\end{figure}
