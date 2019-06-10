@@ -1,4 +1,78 @@
 %-----------------------------------------------------------------------------%
 \addChapter{Lampiran 1}
-\chapter*{Lampiran 1}
+\chapter*{Lampiran 1. Derivasi DOS dari kisi Bethe dan Kubik}
+
+\section*{Kisi Bethe}
+
+\section*{Kisi Kubik}
+
+Energi dispersi pada kubik diberikan dengan
+\begin{align}
+\epsilon_\bo{k} = -2t[\cos(k_x) + \cos(k_y) + \cos(k_z)]
+\end{align}
+maka DOS yang diberikan oleh energi dispersi ini adalah
+\begin{align}
+D(\omega	) &= \frac{1}{2\pi^3} \int_{-\pi}^\pi dk_x \int_{-\pi}^\pi dk_y \int_{-\pi}^\pi dk_z \delta(\omega - \epsilon_\bo{k})\\
+&= \frac{1}{\pi^3 2t}\int_0^\pi dk_x \int_0^\pi dk_y \int_0^\pi dk_z  \delta(\tilde{\omega} + \cos(k_x) + \cos(k_y) + \cos(k_z))
+\end{align}
+dimana $\tilde{\omega} = \omega / 2t$. Dengan melakukan subtitusi variabel untuk setiap nilai $\cos(k_\alpha) = \alpha$ menjadi $\alpha = x,y,z$, maka didapat
+\begin{align}
+D(\omega) = \frac{1}{\pi^32t}\int_{-1}^{1} dx \int_{-1}^{1} dy \int_{-1}^{1} dz \frac{\delta(\tilde{\omega} + x + y + z)}{\sqrt{(1-x^2)(1-y^2)(1-z^2)}}
+\end{align}
+Integral fungsi Delta memilik properti
+\begin{align}
+\int_{-\infty}^\infty dx f(x) \delta(g(x)) = \sum_i \frac{f(x_i)}{\vert g'(x_i) \vert}; \quad \text{dengan} \; g(x_i) = 0
+\end{align}
+dengan mengintegrasi terhadap variabel $y$, sesuai dengan properti integral diatas, maka didapat
+\begin{align}
+D(\omega) = \frac{1}{\pi^3 2t}\int dx \int dz \frac{1}{\sqrt{(1-x^2)(1-y^2)[1-(\tilde{\omega} + x + z)^2]}}
+\end{align}
+dari relasi trigonometri
+\begin{align}
+\sin(\arccos(x)) = \cos(\arcsin(x)) = \sqrt{1 - x^2}
+\end{align}
+kita dapat menentukan batas integrasi pada persamaan (6), dimana
+\begin{align}
+-1 \leq z &\leq 1, \; x_{min} \leq x \leq x_{max},\\
+x_{min} &= \text{max}[-1,-1-(\tilde{\omega}+z)],\\
+x_{max} &= \text{min}[1,1-(\tilde{\omega} + z)]
+\end{align}
+keterbergantungan terhadap $(\tilde{\omega} + z)$ membentuk daerah integrasi yang berbeda,
+\begin{align}
+I &: -1 < x < 1 - (\tilde{\omega} - z) | \; \text{untuk} \; (\tilde{\omega} + z) > 0 \\
+II &: -1 - (\tilde{\omega} - z) < x < 1 | \; \text{untuk} \; (\tilde{\omega} + z) < 0
+\end{align}
+nilai akar $x$ pada polinomial persamaan (6) adalah
+\begin{align}
+x_1 = 1, \; x_2 = -1, \; x_3 = -1 - \tilde{\omega} - z, \; x_4 = 1 - \tilde{\omega} - z 
+\end{align}
+maka persamaan (6) dapat di simplikasi menjadi
+\begin{align}
+D(\omega) = \frac{1}{\pi^3 2t}\int dx \int dz \frac{1}{\sqrt{(1-z^2)\prod_{i=1}^4 ( x - x_i )}}
+\end{align}
+integrasi polinomial $x$,
+\begin{align}
+\int \frac{dx}{\sqrt{P(x)}}
+\end{align}
+dapat ditransformasi. Pertama-tama, kita lakukan transformasi variabel
+\begin{align}
+x(\phi) = \frac{\gamma(\beta - \delta) - \delta(\beta - \gamma)\sin^2(\phi)}{(\beta-\delta) - \delta(\beta - \gamma)\sin^2(\phi)}
+\end{align}
+dengan $\delta < \gamma < \beta < \alpha$ adalah akar-akar real dari persamaan polinomial $P(x)$. Ini dapat ditransformasi ke integral spesial yang disebut sebagai integral Elliptik jenis pertama,
+\begin{align}
+\int \frac{dx}{\sqrt{P(x)}} \rightarrow \frac{2}{\sqrt{(\alpha - \gamma)(\beta - \delta)}}\int \frac{d\phi}{\sqrt{1 - m\sin^2(\phi)}}
+\end{align}
+sehingga DOS kubik menjadi
+\begin{align}
+D(\omega) = \frac{1}{\pi^32t}\int \frac{dz}{\sqrt{1-z^2}}\frac{2}{\sqrt{(\alpha - \gamma)(\beta -\delta)}} \int \frac{d\phi}{\sqrt{1 - m\sin^2(\phi)}}
+\end{align}
+Sekarang kita lihat transformasi integral diatas untuk kedua daerah, untuk daerah pertama, urutan akar-akarnya adalah $x_1 < x_4 < x_2 < x_3$ sehingga $(\alpha - \gamma)(\beta -\delta) \rightarrow (x_3 - x_4)(x_2 - x_1)$, sedangkan untuk daerah kedua, $x_4 < x_1 < x_3 < x_2$ sehingga $(\alpha - \gamma)(\beta -\delta) \rightarrow (x_2 - x_1)(x_3 - x_4)$. Kedua daerah memberikan transformasi yang sama, maka didapat
+\begin{align}
+D(\omega) = \frac{1}{\pi^32t}\int \frac{dz}{\sqrt{1-z^2}} K(m), \quad m = 1 - \left( \frac{\tilde{\omega} + z}{2} \right)^2
+\end{align}
+dimana $K(m)$ adalah integral Eliptik jenis pertama, dimana
+\begin{align}
+K(m) = \int_0^{\pi/2} \frac{d\phi}{\sqrt{1 - m\sin^2(\phi)}}
+\end{align}
+
 %-----------------------------------------------------------------------------%

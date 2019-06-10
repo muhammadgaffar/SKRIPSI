@@ -150,7 +150,7 @@ dimana distribusi Lorentzian menjadi fungsi delta dirac untuk lebar $0^+$ yang t
 \end{align}
 didapat
 \begin{align}
-\rho(\omega) = - \frac{1}{\pi} [ G(\omega' + i0^+) ]
+\rho(\omega) = - \frac{1}{\pi} \text{Im} [ G(\omega' + i0^+) ]
 \end{align}
 persamaan (2.24) dapat dilihat sebagai \textit{analytical continuation} yang dapat dilakukan secara langsung dari fungsi Green pada sumbu riil ke titik $z$ pada sumbu kompleks. Sayangnya, untuk sebaliknya, dimana $G(i\omega_n)$ diketahui dan $\rho(\omega)$ tidak diketahui, maka ini dibutuhkan transformasi Hilbert pada persamaan (2.24) sebagai set integral dari persamaan, menjadikan proses \textit{analytical continuation} menjadi sulit dilakukan.
 
@@ -239,7 +239,7 @@ G_0(z) = \frac{1}{\Lambda} \sum_\bo{k} \frac{1}{z - \epsilon_\bo{k} + \mu}  = \f
 Hal ini tidak lain tidak bukan adalah transformasi Hilbert antara fungsi spektral dan fungsi Greennya.
 
 %-----------------------------------------------------------------------------%
-\subsection{Model Hubbard dan Transisi Mott}
+\section{Model Hubbard dan Transisi Mott}
 %-----------------------------------------------------------------------------%
 
 Untuk bisa menjelaskan sistem yang berinteraksi pada fisika zat mampat, digunakan model efektif yang menyederhanakan permasalahan seluruh struktur elektronik pada sistem, namun masih dapat menangkap fenomena fisisnya. Menyelesaikan hamiltonian 
@@ -319,3 +319,107 @@ Transisi Mott-Hubbard pada kasus paramagnetik ini telah dipelajari dibanyak lite
 		{pics/phase-diagram-param.png}
 	\caption{ Ilustrasi dari diagram fasa transisi Mott-Hubbard logam-isolator. Transisi terjadi pada garis $U_c(T)$ dan dua garis yang membentuk daerah area tiga puncak pada DOS yakni garis $U_{c1}(T)$ untuk pada sisi logam, dan garis $U_{c2}(T)$ pada sisi isolator.}
 \end{figure}
+
+Pada \textit{half-filling}, terdapat keadaan dasar lain selain keadaan paramagnetik, yakni antiferomagnetik. Pada temperatur bukan nol, magnetisasi dari \textit{sublattice} berkurang akibat fluktuasi termal dan transisi ke fasa paramagnetik terjadi temperatur neel. Pada batas interaksi $U$ yang besar, skala energi dari magnetisme dilihat sebagai batas menuju model antiferomagnetik Heisenberg, dengan besar interaksi kopel $J = 4t^2/U$. Sedangkan untuk batas interaksi $U$ yang kecil, antiferomagnetisme terjadi ketidakstabilan dari permukaan fermi dan skala energinya dilihat sebagai ekspresi BCS $T_N \approx t \exp(-1/(\rho_oU))$ dimana $\rho_o$ adalah DOS dari pita quasipartikel\cite{staudt}. Telah banyak studi yang mencoba menghitung temperatur neel dengan berbagai metode dan aproksimasi, diantaranya adalah menggunakan quantum monte-carlo (QMC)\cite{qmc_tn}, DMFT\cite{dmft_tn}, dan pendekatan Hartree-fock\cite{hartree_tn}, gambar 2.5 memperlihatkan hasil dari berbagai metode ini. Salah satu kelemahan dari pendekatan medan rata-rata, terutama Hartree-fock adalah pada batas interaksi yang besar, gagal mendapatkan temperatur neel yang sesuai dengan hasil dari model Heisenberg $T_N = 3.83t^2/U$\cite{heisenberg_tn}. Sayangnya, dalam mempelajari transisi magnetisme pada model Hubbard ini kita tidak dapat melihat transisi Mott-Hubbard dikarenakan order antiferomagnetik pada DOS.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.70\textwidth]
+		{pics/neel-transition.png}
+	\caption{ Diagram fasa magnetik dari \textit{half-filling} model Hubbard. Perhitungan QMC dengan metode yang berbeda ditunjukkan oleh titik terisi penuh\cite{staudt}, segitiga yang tidak terisi\cite{qmc_tn}, dan segitiga terisi \cite{qmc_tn2}. Perhitungan dengan DMFT direpresentasikan oleh titik tidak terisi\cite{dmft_tn}, dan persegi tidak terisi\cite{dmft_tn2}. Hartree-fock ditunjukkan oleh garis kurva lurus\cite{hartree_tn}, batas Heisenberg untuk ekspansi temperatur tinggi, $T_N = 3.83t^2/U$ diperlihatkan dari kurva putus-putus\cite{hartree_tn}, dan teori medan Weiss $T_N = 6t^2 / U$ direpresentasikan oleh garis titik-titik. Diambil dari ref\cite{staudt} }
+\end{figure}
+
+\section{Dynamical Mean-Field Theory}
+
+Salah satu metode yang cukup ampuh dalam menyelesaikan sistem pada Model Hubbard adalah medan rata-rata dinamik (\textit{dynamical mean-field theory} - DMFT). Teknik dan teori DMFT ini telah berjalan dan berkembang selama 25 tahun terakhir ini. Konsepnya cukup sederhana, yakni mengaproksimasi model kisi dengan model satu site dinamik efektif\cite{DMFT}. DMFT dimulai berdasarkan dua pekerjaan, yakni
+\begin{itemize}
+\item \textit{The Introduction of the Limit of Infinite Lattice Coordination q} oleh Metzner dan Vollhard pada tahun 1989\cite{metzner}
+\item \textit{The self-consistent mapping of the Hubbard Model onto local impurity model} oleh Georges dan Kotliar pada tahun 1992\cite{george}
+\end{itemize}
+Metzner dan Vollhard menyimpulkan bahwa \textit{self-energy} $\Sigma(\bo{k},z)$ menjadi bersifat lokal sehingga independen terhadap momentum $\bo{k}$ pada batas jumlah koordinasi kisi yang tak berhingga.
+\begin{align}
+\Sigma(\bo{k},z) \stackrel{q\rightarrow \infty}{=} \Sigma(z)
+\end{align}
+Sehingga, memetakan secara eksak dari permasalahan kisi fisis ke masalah impuritas yang sembarang menjadi mungkin. Dapat dikatakan, sifat invariansi translasi dapat digantikan dengan model impuritas identik - satu untuk setiap kisi. Permasalahan ini dapat dilihat sebagai satu kisi impuritas yang terkopel dengan kolam medan tak berhingga (gambar 2.6).
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.70\textwidth]
+		{pics/impuritymodel.png}
+	\caption{ Pada DMFT, permasalahan kisi dipetakan sebagai kisi impuritas yang terkopel dengan medan tak berhingga }
+\end{figure}
+
+Kolam ini, dihitung secara \textit{self-consistent}, dimana terjadinya komunikasi interaksi antara kisi impuritas dengan kisi residunya. Dalam berjalannya waktu, elektron dapat datang dari kolam untuk mengisi kisi impuritas dan kembali lagi ke kolam (lihat gambar 2.7). Pada model kisi impuritas ini, konfigurasi yang mungkin terbatasi dimulai dari tidak terokupansi, satu elektron dengan spin up atau spin down, dan terokupansi oleh dua elektron dengan spin yang berbeda.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.60\textwidth]
+		{pics/modelimpuritas2.png}
+	\caption{ DMFT menangkap dinamika elektron pada atom impuritas. Dilihat dari evolusi okupansinya dan fluktuasinya terhadap waktu. }
+\end{figure}
+
+Jika pada kisi dengan jumlah koordinasi jauh dari tak berhingga, yakni terbats, maka \textit{self-energy} hanyalah aproksimasi saja,
+\begin{align}
+\Sigma(\bo{k},z) \approx \Sigma(z)
+\end{align}
+Perlu dicatat bahwa mengasumsikan \textit{self-energy} bersifat lokal adalah satu-satunya aproksimasi yang ada di DMFT. Interpretasinya adalah korelasi spasial dengan teknik DMFT ini diabaikan, tetapi korelasi temporal (fluktasi) tetap ada, sehingga sifat kuantum pada sistem masih ada dalam perhitungan. Hal ini kontras dengan metode medan rata-rata biasa yang mengabaikan korelasi spasial dan temporal keduanya.
+
+Untuk bisa menghitung model impuritas dalam kacamata teknik kuantisasi kedua dan terkopelnya dengan kolam, maka diperlukan model untuk sistem yang tidak berinteraksi dahulu. Pada Model Hubbard ini bisa dilihat dengan kisi impuritas terkopel dengan kolam melalui suku kinetik \textit{hopping} $t_{0i}$, yakni (pada model satu kisi impuritas)
+\begin{align}
+H = \underbrace{Un_{0\uparrow}n_{0\downarrow}}_\text{impuritas} + \underbrace{\sum_{i = 1,\sigma}^\infty t_{0i}\left(a^\dagger_{i\sigma}a_{0\sigma} + \text{h.c} \right)}_\text{kopel} 
+\end{align}
+
+Agar dapat bisa mengkonstruksi persamaan \textit{self-consistent}, pertama-tama adanya ekuivalensi konsep impuritas dengan dan kisi fisis, dimana ekuivalensi antara fungsi Green untuk kisi lokal $G_{\text{loc}}(z)$ dan fungsi Green impuritas $g(z)$
+\begin{align}
+G_{\text{loc}}(z) \stackrel{!}{=} g(z)
+\end{align}
+Harus diperhatikan bahwa masalah impuritas bersifat lokal, sehingga fungsi Green impuritas $g(z)$ independen terhadap momentum $\bo{k}$. Sehingga fungsi Green kisi lokal $G_{\text{loc}}(z)$ didapat dengan menjumlahkan semua fungsi Green kisi lokal yang bergantung dengan $\bo{k}$, didapat
+\begin{align}
+G_{\text{loc}}(z) = \frac{1}{N_\bo{k}} \sum_\bo{k} G(\bo{k},z) = \frac{1}{N_\bo{k}} \sum_\bo{k} \frac{1}{z - \epsilon_\bo{k} + \mu - \Sigma(z)}
+\end{align}
+dikarenakan setiap keadaan $\bo{k}$ berada pada interval energi $\epsilon_\bo{k}$, dan pada batas kontinu, maka persamaan (2.61) dapat ditulis sebagai integrasi dari variabel energi $\epsilon$, hal ini sesuai dengan persamaan (2.43), namun dengan \textit{self-energy}
+\begin{align}
+G_{\text{loc}}(z) = \int d\epsilon \frac{D(\epsilon)}{z - \epsilon + \mu - \Sigma(z)}
+\end{align}
+
+Secara praktik (dalam komputasi), lebih baik menggunakan persamaan (2.62) dibanding (2.61) untuk menghindari beratnya komputasi akibat sumasih $\bo{k}$ yang multi-dimensi dan jumlah $N_k$ yang besar, sehingga memakan komputasi sebesar $\mathcal{O}(N^d)$, dimana $d$ adalah jumlah dimensi kisi fisis.
+
+Persamaan (2.60) menjadi pusat dari DMFT, karena hal tersebut merefleksikan pemetaan dari kisi fisis ke model impuritas. Walaupun pemetaan kuantitas $G(\bo{k},z)$ diperlukan, tetapi kuantitas tersebutlah yang dicari dari perhitungan DMFT. Dengan kata lain, agar mendapatkan model impuritas yang benar, diperlukan perhitungan yang bersifat iteratif, sehingga akhirnya menuju pada perhitungan \textit{self-consistent}.
+
+Proses \textit{self-consistent} ini dimulai dengan mematakan dahulu model impuritas dan mendapatkan kuantitas yang disebut fungsi Green kolam $\mathcal{G}_0(z)$ dari persamaan Dyson
+\begin{align}
+\mathcal{G}_0(z) = \left[ G^{-1}_{\text{loc}}(z) + \Sigma(z) \right]^{-1}
+\end{align}
+Perhatikan bahwa kuantitas tersebut bukanlah fungsi Green kisi yang tidak berinteraksi, melainkan fungsi Green lokal yang kisi impuritasnya dihilangkan. $\mathcal{G}_0(z)$ adalah generalisasi dari medan Weiss pada teori medan rata-rata. Kuantitas tersebut menunjukkan dinamikan elektron menuju kisi impuritas, dan kembali lagi ke kolam, dimana $\Sigma(z)$ dinamika elektron pada setiap kisi kecuali kisi impuritas itu sendiri. Poin lainnya adalah bahwa $\mathcal{G}_0(z)$ adalah secara eksak fungsi Green dari model impuritas
+\begin{align}
+g_0(z) = \mathcal{G}_0(z)
+\end{align}
+sehingga hal tersebut mendefinisikan secara keseluruhan sistem impuritas. Parameter fisis dari kisi impuritas tidak lain tidak bukan adalah $U/t$. Persamaan diatas akhirnya melengkapkan persamaan yang dibutuhkan untuk iterasi \textit{self-consistent}. Secara sederhana \textit{self-consistent} dijelaskan sebagai berikut
+\begin{enumerate}
+\item Set tebakan awal untuk \textit{self-energy} $\Sigma(z)$. Secara umum, jika kita tidak mengetahui fisis dari sistem, pada dasarnya tebakan $\sigma(z) = 0$ adalah tebakan yang cukup tepat. Jika \textit{self-energy} dari nilai $U$ yang kurang lebih sama dari perhitungan sebelumnya, maka kita dapat menggunakan \text{self-energy} perhitungan parameter sebelumnya sebagai tebakan awal untuk mempercepat konvergensi.
+\item Fungsi Green lokal didapat dari perhitungan dari persamaan (2.61) ata (2.62). Potensial kimia harus dapat dikalibrasi sedemikian rupa untuk jumlah \textit{filling} $n$ yang dibutuhkan.
+\item Selanjutnya fungsi Green kolam didapat dari perhitungan pada persamaan (2.63).
+\item Metode penyelesaian impuritas harus digunakan untuk menghitung $g(z)$ dan \textit{self-energy} $\Sigma(z)$ dari persamaan Dyson
+\begin{align}
+\Sigma_{imp}(z) = g^{-1}_0(z) - g^{-1}(z)
+\end{align}
+\item Dengan asumsi pendekatan self-energy bersifat lokal, maka $\Sigma_{imp}(z)$ digunakan sebagai \textit{self-energy} untuk kisi juga
+\begin{align}
+\Sigma^{\text{baru}}(z) = \Sigma_{imp}(z)
+\end{align}
+dan digunakan sebagai tebakan baru pada no.2
+\item Alur \textit{self-consistent} jika perhitungan $\Sigma(z)$ telah konvergen dimana
+\begin{align}
+| \Sigma^{\text{baru}}(z) - \Sigma(z) | < \text{toleransi}
+\end{align}
+Jika pencapaian konvergensi sangat susah dicapai, dalam artian sangat berfluktuatif, kita bisa menjaga konsistensi konvergensi dengan teknik pencampuran
+\begin{align}
+\Sigma^{\text{baru}}(z) = (1 - \alpha) \Sigma^\text{lama}(z) + \alpha \Sigma_{imp}(z)
+\end{align}
+dimana $\alpha \in [0,1]$ adalah konstant campuran \textit{self-energy}
+\end{enumerate}
+Secara umum, metode iterasi ini cukup cepat mendapatkan nilai yang konvergen, dan hanya melambat pada daerah-daerah yang dekat dengan transisi fasa. 
+
+Permasalahan utama dalam mencapai hasil yang sangat bagus adalah bagaimana membentuk metode penyelesaian impuritas yang mendekati eksak (dengan komputasi yang rendah jika dibutuhkan). Metode penyelesaian impuritas telah berkembang 25 tahun belakangan ini, beberapa teknik yang tersedia antaranya adalah teknik yang berdasarkan QMC seperti HFQMC\cite{hfqmc}, CTQMC\cite{ctqmc}, teknik yang berdasarkan renormalisasi grup seperti NRG\cite{nrg} dan DMRG\cite{dmrg}, hingga teknik pertubatif seperti teori iterasi pertubasi - IPT\cite{ipt} dan NCA\cite{nca}. Setiap pendekatan numerik tersebut masing-masing memiliki keuntungan dan kerugian tersendiri, biasanya hal ini berkisaran pada kemampuan untuk mendapatkan hasil yang sangat eksak dengan jumlah sumberdaya komputasi yang digunakan.
+
+Memodelkan material asli dengan model Hubbard dan memetakannya ke model impuritas efektif tentulah bentuk dari aproksimasi. Walaupun begitu, DMFT telah memberikan banyak wawasan dari sifat alamiah sistem terkolerasi kuat.

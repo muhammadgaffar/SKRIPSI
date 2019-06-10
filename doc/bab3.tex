@@ -1,71 +1,175 @@
 %-----------------------------------------------------------------------------%
 \chapter{\babTiga}
 %-----------------------------------------------------------------------------%
-\todo{tambahkan kata-kata pengantar bab 1 disini}
+
+%-----------------------------------------------------------------------------%
+\section{Model Hamiltonian dan Kuantitas Fisis}
+%-----------------------------------------------------------------------------%
+
+Model Hamiltonian yang akan dipelajari dalam skripsi ini adalah hamiltonian Hubbard khusus pada kasus \textit{half-filling}, yang dimana dengan memastikan bahwa untuk setiap parameter $U$, memiliki potensial kimia $\mu = 0$, maka hamiltonian ditulis sebagai persamaan (2.56)
+\begin{align}
+H = \sum_{\left< i,j \right> , \sigma} -\left(t_{ij} c^\dagger_{i,\sigma}c_{j,\sigma} + h.c. \right) + U \sum_i \left( n_{i\uparrow} - \frac{1}{2}\right) \left(n_{i\downarrow} - \frac{1}{2} \right)
+\end{align}
+pada skripsi ini juga hanya mempertimbangkan suku kinetik hopping $t_{ij}$ hanya pada tetangga terdekat saja, sehingga hamiltonian diatas lebih dapat disederhanakan sebagai
+\begin{align}
+H = -t\sum_{\left< i,j \right> , \sigma} \left( c^\dagger_{i,\sigma}c_{j,\sigma} + h.c. \right) + U \sum_i \left( n_{i\uparrow} - \frac{1}{2}\right) \left(n_{i\downarrow} - \frac{1}{2} \right)
+\end{align}
+dimana suku hopping bernilai non-negatif $t \geq 0$. 
+
+Fungsi Green hamiltonian Hubbard untuk hamiltonian Hubbard pada persamaan (3.2) adalah
+\begin{align}
+G_\sigma(z) = \frac{1}{z - \epsilon_\bo{k} - \Sigma_\sigma(z)}
+\end{align}
+dimana $\Sigma_\sigma(z)$ adalah kuantitas \textit{self-energy} yang berhubungan dengan suku interaksi $U$, yang diselesaikan dengan beberapa model impuritas yang akan dijelaskan dan digunakan dibawah.
+
+\subsection{Kisi Bipartite}
+
+Agar kita dapat menginvestigasi keadaan antiferromagnetik pada model Hubbard, maka model impuritas untuk satu kisi tidak cukup untuk bisa menghasilkan hasil \textit{magnetic order}. Cara yang paling sederhana adalah membentuk kisi bipartite dimana didalamnya terdiri dari dua \textit{sublattice} A dan B, lihat gambar 3.1, dengan dua \textit{self-energy} yang berbeda, $\Sigma^A_\sigma \neq \Sigma^B_\sigma$ \cite{sublattice}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.80\textwidth]
+		{pics/sublattice.png}
+	\caption{Kiri: Gambaran skematik \textit{sublattice} AB untuk bisa memperoleh keadaan Neel. Kanan: Zona Brillouin Magnetik, daerah Zona Brillouin pertama dari keadaan Neel.}
+\end{figure}
+
+Dari skema tersebut, kita bentuk operator $a^\dagger_{i\sigma}$ dan $b^\dagger_{i\sigma}$ yang berperan sebagai operator untuk masing-masing \textit{sublattice}. Maka Hamiltonian (2.2) dapat ditulis sebagai
+\begin{align}
+H_0 = - t \sum_{\left< i,j \right>,\sigma} \left( a^\dagger_{i\sigma} b^\dagger_{j,\sigma} + b^\dagger_{j,\sigma}a_{i,\sigma} \right)
+\end{align}
+transformasi fourier ke ruang momentum $\bo{k}$ menghasilkan
+\begin{align}
+H_0 = \sum_\bo{k} \sum_\sigma \left( a^\dagger_{\bo{k},\sigma} b^\dagger_{\bo{k},\sigma}  \right)
+\begin{pmatrix}
+0 & \epsilon_\bo{k} \\
+\epsilon_\bo{k} & 0
+\end{pmatrix}
+\begin{pmatrix}
+a_{\bo{k},\sigma} \\
+b_{\bo{k},\sigma}
+\end{pmatrix}
+\end{align}
+dengan $\epsilon_\bo{k}$ adalah dispersi elektron pada model kisi. Dengan notasi ini, fungsi Green sekarang menjadi matriks dengan besar sejumlah \textit{sublattice} $n = 2$,
+\begin{align}
+G_{\bo{k},\sigma}(z) = 
+\begin{pmatrix}
+\zeta^A_\sigma & -\epsilon_\bo{k} \\
+-\epsilon_\bo{k} & \zeta^B_\sigma
+\end{pmatrix}^{-1}
+\end{align} 
+dimana $\zeta^{A/B}_\sigma = z - \Sigma^{A/B}_\sigma$. Hal ini mengimplikasikan berarti terdapat dua model impuritas efektif yang harus diselesaikan masing-masing dalam perhitungan \textit{self-consistent}. Namun, dalam keadaan Neel, terdapat penyerdehanaan yang lebih lanjut. Pada kasus ini, properti dari keadaan di basis \textit{sublattice} A dengan spin $\sigma$ memiliki properti yang samadengan basis \textit{sublattice} B dengan spin yang berlawanan $\sigma'$. Hal ini benar, terutama pada \textit{self-energy}, sehingga terdapat simetri $\zeta^A_\sigma = \zeta^B_{\sigma'} \equiv \zeta_\sigma$ yang akan tinggal kita gunakan, tanpa harus melibatkan indeks basis A dan B, melainkan hanya $\sigma \in [\uparrow, \downarrow]$.
+
+Konsekuensinya adalah fungsi Green lokal pada model kisi, dan tetangga terdekatnya dengan indeks $i$ sekarang termasuk dalam bagian dari \textit{sublattice}. Hal ini dapat diselesaikan dengan melakukan proses inversi pada matriks dalam persamaan (3.6) dan menjumlahkan terhadap momentum $\bo{k}$, dan dalam representasi integral terhadap energi, didapat\cite{DMFT}
+\begin{align}
+G_{ii,\sigma}(z) = \zeta_{\sigma'} \int_{-\infty}^\infty d\epsilon \; \frac{D(\epsilon)}{\zeta_\uparrow \zeta_\downarrow - \epsilon^2}
+\end{align}
+
+\subsection{Kuantitas Fisis}
+
+Pada skripsi ini, kuantitas fisis pertama (\textit{observable}) yang di analisis adalah DOS dari sistem elektronik model, dimana ini dapat dihitung dari hubungannya dengan fungsi Green lokal, yang ditunjukkan oleh persamaan (2.40),
+\begin{align}
+D(\omega) = - \frac{1}{\pi} \text{Im} [G(\omega + i0^+)]
+\end{align}
+Dari DOS ini kita dapat mempelajari fasa metal dan isolator dari sistem, dan transisi keduanya. Hal ini dilihat dari jumlah keadaan (\textit{spectral weight}) pada daerah energi fermi $\epsilon_f = \mu$. Dikarenakan hamiltonian Hubbard pada persamaan (3.2) yang digunakan pada skripsi ini mengakomodir $\mu =0$ untuk $U$ berapa saja, maka kita tinggal melihat \textit{spectral weight} pada energi $\omega = 0$. Ada dan tidaknya batas antar dua pita (gap) yang akan menentukan apakah sistem tersebut metal atau isolator.
+
+Kuantitas fisis kedua yang kita analisis berikutnya adalah besar magnetik sistem. Magnetik sistem secara sederhana dihitung dari perbedaan okupansi elektron dengan spin up dan spin down. Pada kasus half-filling dalam kisi bipartite, kondisi \textit{magnetic order} yang mungkin adalah antiferomagnetik, dan juga dikarenakan simetri keadaan Neel $\Sigma^A_\sigma = \Sigma^B_{\sigma'}$, maka hasil magnetisme secara keseluruhan bernilai nol, dimana $M_A = - M_B$. Namun, pada kondisi antiferomagnetik $M_A = - M_B \neq 0$, sehingga dengan disini kita menganalisis besar perbedaan okupansi spin up dan down untuk satu \textit{sublattice}. Dengan melihat perbedaan okupansi tersebut, kita bisa mempelajari apakah sistem berada dalam keadaan antiferomagnetik atau paramagnetik ($M_A = - M_B \approx 0$). 
+
+Okupansi sendiri dapat dihitung dari fungsi Green lokal,
+\begin{align}
+n_{i\sigma} = \frac{1}{\pi} \int d\omega \;  \text{Im} [G_{ii,\sigma}(\omega + i0^+)] f(\omega,T) = - \int d\omega\; D(\omega) f(\omega,T)
+\end{align}
+dimana $f(\omega,T)$ adalah distribusi fermi pada setiap keadaan energi $\epsilon$ dalam tempeartur $T$,
+\begin{align}
+f(\omega,T) = \frac{1}{\exp(\epsilon\beta) + 1}; \quad \beta = \frac{1}{k_BT}
+\end{align}
+distribusi fermi diperlihatkan oleh gambar 3.2.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1.0\textwidth]
+		{pics/fermi.pdf}
+	\caption{Distribusi elektron pada setiap energi diatur oleh distribusi fermi, diperlihatkan untuk temperatur yang berbeda.}
+\end{figure}
+
+Sehingga besar perbedaan okupansi atau magnetisasi untuk satu \textit{sublattice} dihitung dengan
+\begin{align}
+M_i = \frac{n_{i\uparrow} - n_{i\downarrow}}{n_{i\uparrow} + n_{i\downarrow}}
+\end{align}
+
+%-----------------------------------------------------------------------------%
+\section{Model Kisi}
+
+Model kisi sederhana diperlukan diperlukan untuk menganalisis keberhasilan metode penyelesaian impuritas, sebelum menghitung lebih lanjut pada kasus material asli. Sederhana yang dimaksud adalah model kisi memiliki satu orbital saja, dan memiliki simetri yang sederhana. Model kisi sederhana ini masih mampu menangkap properti dari sistem terkorelasi kuat, sehingga hasil yang didapatkan sepenuhnya hanya bergantung pada metode penyelesaian impuritas.
+
+\subsection{Kisi Bethe}
+
+Kisi Bethe adalah kisi yang memiliki jumlah koordinasi $q$ tidak berhingga. Sehingga pada batas ini, hasil dari DMFT menjadi eksak. Karakteristik spesial lainnya adalah, setiap dua posisi site yang berbeda, keduanya dihubungkan dengan lintas terpendek yang unik (gambar 3.3). Pada dasarnya, kisi Bethe adalah kisi non-fisis, dikarenakan hilangnya simetri translasi invarian pada $q > 2$.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.60\textwidth]
+		{pics/bethe.png}
+	\caption{Gambaran skematik dari kisi Bethe dengan jumlah koordinasi $q = 4$. Kisi Bethe sendiri adalah tak berhingga jumlahnya, dan setiap site pada kisi saling ekuivalen.}
+\end{figure}
+
+Penyerdehanaan paling penting terjadi pada koordinasi tak berhingga $( q \rightarrow \infty )$, dimana \textit{self-energy} menjadi bersifat lokal pada ruang spasial, sehingga DMFT pada daerah ini menjadi eksak. Terlebih, bentuk DOS bethe lattice untuk kondisi yang tidak berinteraksi sangat sederhana, yakni semi-lingkaran. Dapat dibuktikkan DOS untuk sistem yang tidak berinteraksi (diturunkan di Lampiran 1), yakni
+\begin{align}
+D_{0,\text{bethe}}(\omega) = \frac{1}{2 \pi t^2} \sqrt{\omega^2 - 4t^2}
+\end{align}
+Bentuk DOS ini diperlihatkan oleh gambar 3.4. Kisi Bethe sangat penting sebagai kisi mainan (\textit{toy-lattice}) untuk mengklarifikasi transisi Mott-Hubbard logam-isolator pada kasus \textit{half-filling}, dan sering digunakan sebagai kisi untuk melihat hasil pengembangan metode-metode penyelesaian impuritas.
+
+\subsection{Kisi Kubik}
+
+Aproksimasi yang dilakukan DMFT adalah melihat \textit{self-energy} bersifat lokal, yakni tidak bergantung secara spasial pada ruang momentum $\bo{k}$. Sifat lokal berlaku pada jumlah koordinasi kisi menuju tak berhingga $q \rightarrow \infty$, namun pada jumlah koordinasi yang berhingga, pada dasarnya \textit{self-energy} tidak bersifat lokal. Sehingga penggunaan sifat lokal pada dimensi yang berhingga seperti kisi kubik, membuat DMFT sebagai metode yang menghasilkan aproksimasi saja pada kasus tersebut.
+
+Tantangan utama implementasi pada dimensi berhingga adalah melihat seberapa akurat DMFT mengakomidir hasil yang mendekati walaupun mengabaikan korelasi spasial. Beberapa pekerjaan dengan metode penyelesaian impuritas telah dilakukan\cite{staudt,kent,rohringer,daniel} yang beberapa diantaranya sampai mengembangkan metode penyelesaian impuritas yang memasukkan korelasi spasial didalamnya, seperti \textit{Dynamic Cluster Approximation} (DCA)\cite{dca}. Sehingga kisi kubik adalah menjadi contoh menarik yang paling sederhana pada kasus dimensi berhingga.
+
+Kisi kubik sendiri dikarenakan memiliki posisi atom tetangga terdekat $\bo{R}_j \in [(1,0,0), (0,1,0), (0,0,1)]$, sehingga energi dispersi pada kisi kubik adalah
+\begin{align}
+\epsilon_\bo{k} = -t \sum_j e^{-i\bo{k}\cdot\bo{R}_j} = -2t \left[ \cos(k_x) + \cos(k_y) + \cos(k_z) \right]
+\end{align}
+dengan jarak lattice di set $a = 1$. Sehingga DOS untuk kisi kubik pada kasus tidak berinteraksi adalah
+\begin{align}
+D_{0,\text{kubik}}(\omega) = \sum_\bo{k} \delta(\epsilon - \epsilon_\bo{k}) = \sum_{kx,ky,kz} \delta (\epsilon + 2t \left[ \cos(k_x) + \cos(k_y) + \cos(k_z) \right])
+\end{align}
+Bagusnya, DOS diatas masih bisa diturunkan secara analitik, sehingga tidak perlu melakukan perhitungan komputasi sumasih multi-dimensi dengan jumlah titik yang banyak sehingga memakan banyak sumberdaya komputasi. DOS diatas secara analitik (diturunkan pada lampiran 1), diberikan oleh\cite{anna}
+\begin{align}
+D_{0,\text{kubik}}(\omega) = \frac{1}{2\pi^3t}\int_{-1}^1 \frac{dz}{\sqrt{1-z^2}}K(m); \quad m = 1 - \left(\frac{\tilde{\omega} + z}{2}\right)^2
+\end{align}
+dengan $\tilde{\omega} = \omega / 2t$, dan $K(m)$ adalah integral spesial yang disebut sebagai integral elipitik komplit,
+\begin{align}
+K(m) = \int_0^{\pi/2} \frac{d\varphi}{\sqrt{1 - m\sin^2\varphi}}
+\end{align}
+Bentuk DOS kubik diperlihatkan pada gambar 3.4.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.80\textwidth]
+		{pics/bethe-kubik.pdf}
+	\caption{DOS pada sistem yang tidak berinteraksi untuk kedua model kisi sederhana, kisi bethe dan kisi kubik}	
+\end{figure}
 
 
 %-----------------------------------------------------------------------------%
-\section{Satu Persamaan}
-%-----------------------------------------------------------------------------%
-
-\noindent \begin{align}\label{eq:garis}
-	\cfrac{y - y_{1}}{y_{2} - y_{1}} = 
-	\cfrac{x - x_{1}}{x_{2} - x_{1}}
-\end{align}
-
-\equ~\ref{eq:garis} diatas adalah persamaan garis. 
-\equ~\ref{eq:garis} dan \ref{eq:bola} sama-sama dibuat dengan perintah \bslash
-align. 
-Perintah ini juga dapat digunakan untuk menulis lebih dari satu persamaan. 
-
-\noindent \begin{align}\label{eq:bola}
-	\underbrace{|\overline{ab}|}_{\text{pada bola $|\overline{ab}| = r$}} 
-		= \sqrt[2]{(x_{b} - x_{a})^{2} + (y_{b} - y_{a})^{2} + 
-				\vert\vert(z_{b} - z_{a})^{2}}
-\end{align}
 
 %-----------------------------------------------------------------------------%
-\section{Lebih dari Satu Persamaan}
-\label{sec:multiEqu}
+\section{Medan Rata-Rata}
 %-----------------------------------------------------------------------------%
-\noindent \begin{align}\label{eq:matriks}	
-	|\overline{a} * \overline{b}| &= |\overline{a}| |\overline{b}| \sin\theta 
-		\\[0.2cm]
-	\overline{a} * \overline{b} &=  
-		\begin{array}{| c c c |}
-			\hat{i} & x_{1} & x_{2} \\
-			\hat{j} & y_{1} & y_{2} \\
-			\hat{k} & z_{1} & z_{2} \\
-		\end{array} \nonumber \\[0.2cm]
-	&= \hat{i} \,
-		\begin{array}{ | c c | }
-			y_{1} & y_{2} \\
-			z_{1} & z_{2} \\
-		\end{array} 
-	   + \hat{j} \,
-		\begin{array}{ | c c | }
-			z_{1} & z_{2} \\
-			x_{1} & x_{2} \\
-		\end{array} 
-	   + \hat{k} \,	
-		\begin{array}{ | c c | }
-			x_{1} & x_{2} \\
-			y_{1} & y_{2} \\
-		\end{array}
-		\nonumber
-\end{align}
 
-Pada \equ~\ref{eq:matriks} dapat dilihat beberapa baris menjadi satu bagian 
-dari \equ~\ref{eq:matriks}. 
-Sedangkan dibawah ini dapat dilihat bahwa dengan cara yang sama, \equ~
-\ref{eq:gabungan1}, \ref{eq:gabungan2}, dan \ref{eq:gabungan3} memiliki nomor 
-persamaannya masing-masing. 
+%-----------------------------------------------------------------------------%
+\section{Teori Iterasi Pertubasi (IPT)}
+%-----------------------------------------------------------------------------%
 
-\noindent \begin{align}\label{eq:gabungan1}	
-	\int_{a}^{b} f(x)\, dx + \int_{b}^{c} f(x) \, dx = \int_{a}^{c} f(x) \, dx
-		\\\label{eq:gabungan2}
-	\lim_{x \to \infty} \frac{f(x)}{g(x)} = 0 \hspace{1cm} 
-		\text{jika pangkat $f(x)$ $<$ pangkat $g(x)$} \\\label{eq:gabungan3}
-	a^{m^{a \, ^{n}\log b }} = b^{\frac{m}{n}}
-\end{align}
+%-----------------------------------------------------------------------------%
+\section{Fluktuasi Okupansi}
+%-----------------------------------------------------------------------------%
+
+%-----------------------------------------------------------------------------%
+\section{Imlplementasi Numerik}
+
+\subsection{Diagram Proses Perhitungan Numerik}
+
+\subsection{Implementasi dalam Bahasa Julia}
+
+%-----------------------------------------------------------------------------%
 
