@@ -1,1 +1,7 @@
 *.log
+*.aux
+doc/build
+doc/pics
+src/DMFT_OF
+ref/*.png
+nb/.ipynb_checkpoints/
