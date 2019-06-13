@@ -1,5 +1,7 @@
 *.log
 *.aux
+*.pdf
+*.ipynb
 doc/build
 doc/pics
 src/DMFT_OF

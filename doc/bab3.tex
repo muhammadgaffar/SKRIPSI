@@ -2,6 +2,8 @@
 \chapter{\babTiga}
 %-----------------------------------------------------------------------------%
 
+Pada bab ini, kita membahas model sistem yang dianalisis, dan kuantitas fisis yang dihitung. Selanjutnya, sebelum membahas pengembangan metode penyelesaian impuritas yang baru, kita terlebih dahulu membahas metode penyelesaian impuritas yang sederhana dari DMFT, yakni medan rata-rata, dan teori iterasi pertubasi, yang kita pelajari sebagai hasil pembanding dari metode penyelesaian impuritas yang kita kembangkan, yakni flutuasi okupansi.
+
 %-----------------------------------------------------------------------------%
 \section{Model Hamiltonian dan Kuantitas Fisis}
 %-----------------------------------------------------------------------------%
@@ -153,16 +155,120 @@ Bentuk DOS kubik diperlihatkan pada gambar 3.4.
 %-----------------------------------------------------------------------------%
 
 %-----------------------------------------------------------------------------%
-\section{Medan Rata-Rata}
+\section{Metode Penyelesaian Impuritas Pembanding}
+
+\subsection{Medan Rata-Rata}
 %-----------------------------------------------------------------------------%
 
+Pendekatan medan rata-rata atau disebut juga pendekatan Hartree-Fock adalah pendekatan yang mengabaikan fluktuasi medan didalamnya\cite{mf}, yakni fluktuasi densitas elektron, yang dimana fluktuasinya didefinisikan sebagai $\Delta n_{i\sigma} \equiv n_{i\sigma} - \left< n_{i\sigma} \right>$, yakni jumlah perbedaan densitas elektron dari operator eksak $n_{i\sigma}$ dan okupansi rata-ratanya $\left< n_{i\sigma} \right>$. Dari relasi ini, didapatkan
+$n_{i\sigma} \equiv \left< n_{i\sigma} \right> + \Delta n_{i\sigma}$. Maka operator interaksi elektron dalam kisi ditulis
+\begin{align}
+n_{i\uparrow}n_{i\downarrow} &= (\Delta n_{i\uparrow} + \left< n_{i\uparrow} \right>)\cdot (\Delta n_{i\downarrow} + \left< n_{i\downarrow} \right>)\notag\\
+&= \Delta n_{i\uparrow} \Delta n_{i\downarrow} + \sum_\sigma n_{i\sigma} \left< n_{i\sigma} \right> - \left< n_{i\uparrow} \right> \left< n_{i\downarrow} \right>
+\end{align}
+Dalam pendekatan medan rata-rata, kita mengabaikan fluktuasi pada suku pertama, maka hamiltonian Hubbard pada persamaan 3.2 pada suku interaksi menjadi
+\begin{align}
+H_U^{MF} = U \sum_{i\sigma} n_{i\sigma} \left< n_{i\bar{\sigma}} \right> - UN \left< n_{\uparrow} \right> \left< n_{\downarrow} \right> - \frac{U}{2} \sum_{i\sigma} n_{i\sigma} + \frac{U}{4}
+\end{align}
+dimana $N$ adalah jumlah elektron, dan pada \textit{half-filling} ini bernilai $1$. Kondisi ini akan memastikan bahwa $\mu = 0$. Pada paramagnetik, $\left< n_{i\bar{\sigma}} \right> = \frac{1}{2}$, sehingga suku kedua dan keempat saling menghilangkan, sehingga tersisa
+\begin{align}
+H_U^{MF} = U \sum_{i\sigma} n_{i\sigma} \left< n_{i\bar{\sigma}} \right> - \frac{U}{2} \sum_{i\sigma} n_{i\sigma}
+\end{align}
+
+Suku interaksi sekarang memiliki operator yang sama dengan suku kinetik \textit{hopping}, sehingga dengan transformasi fourier, hamiltonian untuk spin $\sigma$ menjadi matriks 2x2 dengan 
+\begin{align}
+\begin{pmatrix}
+U\left< n_{1\bar{\sigma}} \right> & \epsilon_\bo{k}\\
+\epsilon_\bo{k} & U\left< n_{2\bar{\sigma}} \right>
+\end{pmatrix}
+\end{align}
+ini dapat dengan mudah dilakukan diagonalisasi baik secara analitik maupun numerik, sehingga didapat hasil fungsi Green untuk masing-masing komponen 
+\begin{align}
+G_{i\sigma}(\zeta) = \frac{1}{\zeta - \epsilon'_{\bo{k},\sigma}}
+\end{align}
+dimana $\epsilon'_{\bo{k},\sigma}$ adalah nilai eigen untuk masing-masing komponen $<i\sigma>$ pada matriks 3.20.
+
+Perhitungan \textit{self-consistent} dilakukan pertama-tama dengan menebak okupansi untuk parameter $<U,t>$, yang akan dimasukkan pada matriks (3.20). Selanjutnya menghitung fungsi Green lokal pada persamaan (3.21), dan kemudian menghitung okupansi elektron yang diberikan pada persamaan (3.9). Konvergensi tercapai jika jumlah perbedaan hasil okupansi tebakan dan hitungan kurang dari nilai toleransi yang diberikan.
+
 %-----------------------------------------------------------------------------%
-\section{Teori Iterasi Pertubasi (IPT)}
+\subsection{Teori Iterasi Pertubasi (IPT)}
 %-----------------------------------------------------------------------------%
+
+Teori iterasi pertubasi (IPT) adalah metode penyelesaian impuritas sederhana yang lebih akurat dibanding medan rata-rata. IPT melibatkan diagram feynman orde kedua\cite{DMFT}. Dapat dikatakan IPT adalah koreksi diagram pada medan rata-rata karena melibatkan hingga orde kedua, yang dimana medan rata-rata hanya sampai pada orde pertama, yakni diagram hartree. Diagram feynman untuk IPT digambarkan pada 3.5. \textit{Self-energy} dari gambar diagram feynman tersebut adalah
+\begin{align}
+\Sigma_{i\sigma}(i\omega_n) = U\left< n_{i\bar{\sigma}} \right> - \frac{U^2}{\beta^2} \sum_{m,p} \mathcal{G}_{i\sigma}(i\omega + i\nu_m)\mathcal{G}_{i\bar{\sigma}}(i\omega_p + i\nu_m)\mathcal{G}_{i\bar{\sigma}}(i\omega_p)
+\end{align}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.50\textwidth]
+		{pics/ipt.png}
+	\caption{Diagram feynman orde kedua dari suku pertubasi dalam pendekatan IPT.}
+\end{figure}
+
+Perhitungan pada pekerjaan skripsi ini dilakukan pada sumbu riil, sehingga dibutunkan \textit{analytical continuation} untuk \textit{self-energy} di domain matsubara ke domain riil. Hal ini dapat kita lakukan secara analitik dengan melihat relasi dari DOS dan fungsi Green matsubara
+\begin{align}
+G(i\omega_n) = \int d\omega \; \frac{D(\omega)}{i\omega_n - \omega}
+\end{align}
+Penurunan analitik \textit{analytical continuation} bagian ini diturunkan pada Lampiran B, dimana didapat \textit{self-energy} pada domain riil sebagai
+\begin{align}
+\Sigma(\omega) = U\left< n_{i\bar{\sigma}} \right> - U^2 \int d\nu \int d\nu' \int d\nu'' \frac{[D^-(\nu)D^+(\nu')D^-(\nu'') + D^+(\nu)D^-(\nu')D^+(\nu'')]}{\omega + i0^+ - \nu + \nu' - \nu''}\notag
+\end{align}
+dimana notasi $D^+$ dan $D^-$, adalah
+\begin{align}
+D^+(\omega) &= f(\omega)D(\omega)\\
+D^-(\omega) &= f(1 - \omega)D(\omega)
+\end{align}
+Dengan mengambil nilai imajinernya, dan mengintegrasi terhadap $\nu''$, didapat
+\begin{align}
+\text{Im}\Sigma(\omega) = -\pi U^2 \int d\nu \int d\nu' [D^-(\nu)D^+(\nu')D^-(\omega - \nu + \nu') + D^+(\nu)D^-(\nu')D^+(\omega - \nu + \nu')]
+\end{align}
+dimana nilai riil dari $\text{Re}\Sigma(\omega)$ didapat dari relasi kramers-kronig, yang hal ini dapat digunakan untuk fungsi kasual.
+\begin{align}
+\text{Re}\Sigma(\omega) = \frac{1}{\pi}\mathcal{P}\int_{-\infty}^\infty d\omega' \;\frac{\text{Im}\Sigma(\omega)}{\omega' - \omega}
+\end{align}
 
 %-----------------------------------------------------------------------------%
 \section{Fluktuasi Okupansi}
 %-----------------------------------------------------------------------------%
+
+Perhitungan dengan medan rata-rata atau pendekatan Hartree-Fock, merupakan pendekatan yang menghilangkan fluktuasi okupansi didalamnya. Melalui modifikasi medan rata-rata, kami membuat model impuritas yang baru dengan memasukkan suku fluktuasi. Suku fluktuasi ini tidak sepenuhnya perhitungan yang dilakukan secara kuantum, melain suatu kuantitas semi-klasik dengan konsep yang sama seperti perhitungan medan rata-rata untuk kopel elektron-fonon\cite{el-ph} dan interaksi magnetik Hund\cite{hund}. Konsep ide ini dimulai dengan memodifikasi suku interaksi pada pada model Hubbard menjadi
+\begin{align}
+U \sum_i n_{i\uparrow} n _{i\downarrow} &= \frac{U}{2} \sum_i \left( n_{i\uparrow} n _{i\downarrow} + n_{i\uparrow} n _{i\downarrow} \right)\notag\\
+&= \frac{U}{2} \sum_i \left[ n_{i\uparrow} \left(\left< n _{i\downarrow} \right> + \delta_{i\downarrow} \right) + n _{i\downarrow} \left( \left< n_{i\uparrow} \right> + \delta_{i\uparrow} \right) \right]
+\end{align}
+
+dimana $\delta_{i\sigma}$ adalah fluktuasi okupansi elektron. Fluktuasi ini kita jadikan sebagai kuantitas kontinu klasik yang bervariasi dari nilai minimum okupansi ($n_{min} = -1$) hingga nilai maksimumnya ($n_{max} = 1$). Perhitungan ini pertama-tama dilakukan di domain matsubara. Hal ini dikarenakan pada domain matsubara kita dapat menghitung pemberat atau probabilitas masing-masing fluktuasi okupansi. Pertama-tama, \textit{self-energy} lokal dinyatakan dalam
+\begin{align}
+\Sigma_{\text{loc},\sigma} = \frac{U}{2}\left(\left< n_\sigma \right> + \delta_\sigma\right) 
+\end{align}
+dari sini, selanjutnya kita mengkonstruksi fungsi Green lokal interaksi $\tilde{G}(i\omega_n, \delta_{\uparrow}, \delta_{\downarrow})$ yang memuat suku fluktuasi didalamnya
+\begin{align}
+\tilde{G}(i\omega_n, \delta_{\uparrow}, \delta_{\downarrow}) = \left[ \mathcal{G}^{-1}(i\omega_n) - \Sigma_{\text{loc},\sigma}^{-1} \right]^{-1}
+\end{align}
+Dari sini, aksi efektif dapat dibuat untuk fluktuasi okupansi
+\begin{align}
+S_{\text{eff}}(\delta_\uparrow,\delta_\downarrow) = - \sum_n \ln \det \left[ \mathcal{G}^{-1}(i\omega_n) \tilde{G}(i\omega_n,\delta_\uparrow,\delta_\downarrow) \right] e^{i\omega_n 0^+}
+\end{align}
+dan probabilitas didapat
+\begin{align}
+P(\delta_\uparrow, \delta_\downarrow) = \frac{1}{Z} \exp(-S_{\text{eff}}(\delta_\uparrow,\delta_\downarrow))
+\end{align}
+dengan fungsi partisi $Z$
+\begin{align}
+Z = \int d\delta_\uparrow \int d\delta_\downarrow \; P(\delta_\uparrow, \delta_\downarrow)
+\end{align}
+Sehingga dari sini kita rata-rata fungsi Green akibat dari fluktuasi
+\begin{align}
+G_{\text{ave}}(i\omega_n) = \int d\delta_\uparrow \int d\delta_\downarrow \; P(\delta_\uparrow, \delta_\downarrow) \tilde{G}(i\omega_n, \delta_{\uparrow}, \delta_{\downarrow})
+\end{align}
+maka \textit{self-energy} dihitung kembali dari persamaan Dyson dengan menggunakan fungsi Green yang telah didapat rata-ratanya akibat fluktuasi
+\begin{align}
+\Sigma(i\omega_n) = \left[\mathcal{G}^{-1}(i\omega_n) - G(i\omega_n)\right]^{-1}
+\end{align}
+Perhitungan ini dari persamaan (3.29) hingga (3.35) adalah perhitungan \textit{self-consistent} pada domain matsubara. Namun, sebelum melanjutkan perhitungan untuk iterasi selanjutnya pada domain matsubara, perhitungan yang sama dilkaukan pada domain riil, tanpa melakukan kembali perhitungan (3.31) hingga (3.33), yang dimana kuantitasnya didapat dari perhitungan pada domain matsubara. Terakhir, dilakukan perhitungan DOS dan okupansi elektron pada domain riil, dan kembali melanjutkan ke iterasi pada domain matsubara.
+
+Fluktuasi okupansi akan digunakan sebagai metode penyelesaian impuritas alternatif untuk mencari keadaan okupansi atau magnetisme yang lebih tepat. Sehingga akan metode fluktuasi okupansi ini akan dievaluasi dengan melihat bagaimana perbedaan relatifnya terhadap metode penyelesaian impuritas medan rata-rata biasa dan IPT. Fluktuasi okupansi akan juga coba digunakan sebagai metode koreksi dari IPT, untuk melihat apakah fluktuasi okupansi dapat memperbaiki hasil menjadi lebih baik terhadap hasil-hasil literatur yang menggunakan metode penyelesaian impuritas yang lebih eksak seperti teknik QMC.
 
 %-----------------------------------------------------------------------------%
 \section{Imlplementasi Numerik}
