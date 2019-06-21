@@ -200,7 +200,7 @@ sehingga diberikan momentum $\bo{k}$ maka elektron hanya bisa memiliki energi se
 
 Fungsi Green yang berinteraksi, atau biasanya disebut juga sebagai \textit{dressed propagator}, dapat ditulis sebagai sumasih tak berhingga dari diagram Feynman\cite{spektral}. Sumasih secara formal dapat dihitung, sehingga menghasilkan persamaan Dyson
 \begin{align}
-G_{\bo{k}\sigma}(z) = \frac{1}{G^{-1}_{0,\bo{k}\sigma}(z) - \sum_\bo{k}(z)}
+G_{\bo{k}\sigma}(z) = \frac{1}{G^{-1}_{0,\bo{k}\sigma}(z) - \Sigma_\bo{k}(z)}
 \end{align}
 dimana persamaan ini menghubungkan \textit{bare propagator} dan \textit{dressed propagator}. Semua suku interaksi berada pada kuantitas \textit{self-energy} $\Sigma_\bo{k}(z) \in \mathbb{C}$. Berdasarkan persamaan (2.34) fungsi Green yang berinteraksi menghasilkan 
 \begin{align}
@@ -320,13 +320,17 @@ Transisi Mott-Hubbard pada kasus paramagnetik ini telah dipelajari dibanyak lite
 	\caption{ Ilustrasi dari diagram fasa transisi Mott-Hubbard logam-isolator. Transisi terjadi pada garis $U_c(T)$ dan dua garis yang membentuk daerah area tiga puncak pada DOS yakni garis $U_{c1}(T)$ untuk pada sisi logam, dan garis $U_{c2}(T)$ pada sisi isolator.}
 \end{figure}
 
-Pada \textit{half-filling}, terdapat keadaan dasar lain selain keadaan paramagnetik, yakni antiferomagnetik. Pada temperatur bukan nol, magnetisasi dari \textit{sublattice} berkurang akibat fluktuasi termal dan transisi ke fasa paramagnetik terjadi temperatur neel. Pada batas interaksi $U$ yang besar, skala energi dari magnetisme dilihat sebagai batas menuju model antiferomagnetik Heisenberg, dengan besar interaksi kopel $J = 4t^2/U$. Sedangkan untuk batas interaksi $U$ yang kecil, antiferomagnetisme terjadi ketidakstabilan dari permukaan fermi dan skala energinya dilihat sebagai ekspresi BCS $T_N \approx t \exp(-1/(\rho_oU))$ dimana $\rho_o$ adalah DOS dari pita quasipartikel\cite{staudt}. Telah banyak studi yang mencoba menghitung temperatur neel dengan berbagai metode dan aproksimasi, diantaranya adalah menggunakan quantum monte-carlo (QMC)\cite{qmc_tn}, DMFT\cite{dmft_tn}, dan pendekatan Hartree-fock\cite{hartree_tn}, gambar 2.5 memperlihatkan hasil dari berbagai metode ini. Salah satu kelemahan dari pendekatan medan rata-rata, terutama Hartree-fock adalah pada batas interaksi yang besar, gagal mendapatkan temperatur neel yang sesuai dengan hasil dari model Heisenberg $T_N = 3.83t^2/U$\cite{heisenberg_tn}. Sayangnya, dalam mempelajari transisi magnetisme pada model Hubbard ini kita tidak dapat melihat transisi Mott-Hubbard dikarenakan order antiferomagnetik pada DOS.
+Pada \textit{half-filling}, terdapat keadaan dasar lain selain keadaan paramagnetik, yakni antiferomagnetik. Pada temperatur bukan nol, magnetisasi dari \textit{sublattice} berkurang akibat fluktuasi termal dan transisi ke fasa paramagnetik terjadi temperatur neel. Pada batas interaksi $U$ yang besar, skala energi dari magnetisme dilihat sebagai batas menuju model antiferomagnetik Heisenberg, dengan besar interaksi kopel $J = 4t^2/U$. Sedangkan untuk batas interaksi $U$ yang kecil, antiferomagnetisme terjadi ketidakstabilan dari permukaan fermi dan skala energinya dilihat sebagai ekspresi BCS $T_N \approx t \exp(-1/(\rho_oU))$ dimana $\rho_o$ adalah DOS dari pita quasipartikel\cite{staudt}. Telah banyak studi yang mencoba menghitung temperatur neel dengan berbagai metode dan aproksimasi, diantaranya adalah menggunakan quantum monte-carlo (QMC)\cite{qmc_tn}, DMFT\cite{dmft_tn}, dan pendekatan Hartree-fock\cite{hartree_tn}, gambar 2.5 memperlihatkan hasil dari berbagai metode ini. Pendekatan Hartree-fock diatur oleh persamaan gap\cite{staudt} 
+\begin{align}
+	\frac{2}{U} = 0.718\int d\omega \frac{D_0(\omega)}{\omega}\tanh\frac{\omega}{2T_N}
+\end{align}
+Salah satu kelemahan dari pendekatan medan rata-rata, yakni Hartree-fock adalah pada batas interaksi yang besar, gagal mendapatkan temperatur neel yang sesuai dengan hasil dari model Heisenberg $T_N = 3.83t^2/U$\cite{heisenberg_tn}. Sayangnya, dalam mempelajari transisi magnetisme pada model Hubbard ini kita tidak dapat melihat transisi Mott-Hubbard dikarenakan order antiferomagnetik pada DOS.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.70\textwidth]
 		{pics/neel-transition.png}
-	\caption{ Diagram fasa magnetik dari \textit{half-filling} model Hubbard. Perhitungan QMC dengan metode yang berbeda ditunjukkan oleh titik terisi penuh\cite{staudt}, segitiga yang tidak terisi\cite{qmc_tn}, dan segitiga terisi \cite{qmc_tn2}. Perhitungan dengan DMFT direpresentasikan oleh titik tidak terisi\cite{dmft_tn}, dan persegi tidak terisi\cite{dmft_tn2}. Hartree-fock ditunjukkan oleh garis kurva lurus\cite{hartree_tn}, batas Heisenberg untuk ekspansi temperatur tinggi, $T_N = 3.83t^2/U$ diperlihatkan dari kurva putus-putus\cite{hartree_tn}, dan teori medan Weiss $T_N = 6t^2 / U$ direpresentasikan oleh garis titik-titik. Diambil dari ref\cite{staudt} }
+	\caption{ Diagram fasa magnetik dari \textit{half-filling} model Hubbard. Perhitungan QMC dengan metode yang berbeda ditunjukkan oleh titik terisi penuh\cite{staudt}, segitiga yang tidak terisi\cite{qmc_tn}, dan segitiga terisi \cite{qmc_tn2}. Perhitungan dengan DMFT direpresentasikan oleh titik tidak terisi\cite{dmft_tn}, dan persegi tidak terisi\cite{dmft_tn2}. Hartree-fock ditunjukkan oleh garis kurva lurus\cite{hartree_tn}, yang dimana kurva ini diatur oleh persamaan gap. sedangkan batas Heisenberg untuk ekspansi temperatur tinggi diberikan oleh $T_N = 3.83t^2/U$, ini diperlihatkan dari kurva putus-putus\cite{hartree_tn}, dan teori medan Weiss $T_N = 6t^2 / U$ direpresentasikan oleh garis titik-titik. Diambil dari ref\cite{staudt} }
 \end{figure}
 
 \section{Dynamical Mean-Field Theory}
@@ -377,14 +381,14 @@ Harus diperhatikan bahwa masalah impuritas bersifat lokal, sehingga fungsi Green
 \begin{align}
 G_{\text{loc}}(z) = \frac{1}{N_\bo{k}} \sum_\bo{k} G(\bo{k},z) = \frac{1}{N_\bo{k}} \sum_\bo{k} \frac{1}{z - \epsilon_\bo{k} + \mu - \Sigma(z)}
 \end{align}
-dikarenakan setiap keadaan $\bo{k}$ berada pada interval energi $\epsilon_\bo{k}$, dan pada batas kontinu, maka persamaan (2.61) dapat ditulis sebagai integrasi dari variabel energi $\epsilon$, hal ini sesuai dengan persamaan (2.43), namun dengan \textit{self-energy}
+dikarenakan setiap keadaan $\bo{k}$ berada pada interval energi $\epsilon_\bo{k}$, dan pada batas kontinu, maka persamaan (2.62) dapat ditulis sebagai integrasi dari variabel energi $\epsilon$, hal ini sesuai dengan persamaan (2.43), namun dengan \textit{self-energy}
 \begin{align}
 G_{\text{loc}}(z) = \int d\epsilon \frac{D(\epsilon)}{z - \epsilon + \mu - \Sigma(z)}
 \end{align}
 
-Secara praktik (dalam komputasi), lebih baik menggunakan persamaan (2.62) dibanding (2.61) untuk menghindari beratnya komputasi akibat sumasih $\bo{k}$ yang multi-dimensi dan jumlah $N_k$ yang besar, sehingga memakan komputasi sebesar $\mathcal{O}(N^d)$, dimana $d$ adalah jumlah dimensi kisi fisis.
+Secara praktik (dalam komputasi), lebih baik menggunakan persamaan (2.63) dibanding (2.62) untuk menghindari beratnya komputasi akibat sumasih $\bo{k}$ yang multi-dimensi dan jumlah $N_k$ yang besar, sehingga memakan komputasi sebesar $\mathcal{O}(N^d)$, dimana $d$ adalah jumlah dimensi kisi fisis.
 
-Persamaan (2.60) menjadi pusat dari DMFT, karena hal tersebut merefleksikan pemetaan dari kisi fisis ke model impuritas. Walaupun pemetaan kuantitas $G(\bo{k},z)$ diperlukan, tetapi kuantitas tersebutlah yang dicari dari perhitungan DMFT. Dengan kata lain, agar mendapatkan model impuritas yang benar, diperlukan perhitungan yang bersifat iteratif, sehingga akhirnya menuju pada perhitungan \textit{self-consistent}.
+Persamaan (2.61) menjadi pusat dari DMFT, karena hal tersebut merefleksikan pemetaan dari kisi fisis ke model impuritas. Walaupun pemetaan kuantitas $G(\bo{k},z)$ diperlukan, tetapi kuantitas tersebutlah yang dicari dari perhitungan DMFT. Dengan kata lain, agar mendapatkan model impuritas yang benar, diperlukan perhitungan yang bersifat iteratif, sehingga akhirnya menuju pada perhitungan \textit{self-consistent}.
 
 Proses \textit{self-consistent} ini dimulai dengan mematakan dahulu model impuritas dan mendapatkan kuantitas yang disebut fungsi Green kolam $\mathcal{G}_0(z)$ dari persamaan Dyson
 \begin{align}
@@ -397,8 +401,8 @@ g_0(z) = \mathcal{G}_0(z)
 sehingga hal tersebut mendefinisikan secara keseluruhan sistem impuritas. Parameter fisis dari kisi impuritas tidak lain tidak bukan adalah $U/t$. Persamaan diatas akhirnya melengkapkan persamaan yang dibutuhkan untuk iterasi \textit{self-consistent}. Secara sederhana \textit{self-consistent} dijelaskan sebagai berikut
 \begin{enumerate}
 \item Set tebakan awal untuk \textit{self-energy} $\Sigma(z)$. Secara umum, jika kita tidak mengetahui fisis dari sistem, pada dasarnya tebakan $\sigma(z) = 0$ adalah tebakan yang cukup tepat. Jika \textit{self-energy} dari nilai $U$ yang kurang lebih sama dari perhitungan sebelumnya, maka kita dapat menggunakan \text{self-energy} perhitungan parameter sebelumnya sebagai tebakan awal untuk mempercepat konvergensi.
-\item Fungsi Green lokal didapat dari perhitungan dari persamaan (2.61) ata (2.62). Potensial kimia harus dapat dikalibrasi sedemikian rupa untuk jumlah \textit{filling} $n$ yang dibutuhkan.
-\item Selanjutnya fungsi Green kolam didapat dari perhitungan pada persamaan (2.63).
+\item Fungsi Green lokal didapat dari perhitungan dari persamaan (2.62) ata (2.63). Potensial kimia harus dapat dikalibrasi sedemikian rupa untuk jumlah \textit{filling} $n$ yang dibutuhkan.
+\item Selanjutnya fungsi Green kolam didapat dari perhitungan pada persamaan (2.64).
 \item Metode penyelesaian impuritas harus digunakan untuk menghitung $g(z)$ dan \textit{self-energy} $\Sigma(z)$ dari persamaan Dyson
 \begin{align}
 \Sigma_{imp}(z) = g^{-1}_0(z) - g^{-1}(z)

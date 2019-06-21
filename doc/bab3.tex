@@ -264,7 +264,7 @@ G_{\text{ave}}(i\omega_n) = \int d\delta_\uparrow \int d\delta_\downarrow \; P(\
 \end{align}
 maka \textit{self-energy} dihitung kembali dari persamaan Dyson dengan menggunakan fungsi Green yang telah didapat rata-ratanya akibat fluktuasi
 \begin{align}
-\Sigma(i\omega_n) = \left[\mathcal{G}^{-1}(i\omega_n) - G(i\omega_n)\right]^{-1}
+\Sigma(i\omega_n) = \left[\mathcal{G}^{-1}(i\omega_n) - G_{\text{ave}}(i\omega_n)\right]^{-1}
 \end{align}
 Perhitungan ini dari persamaan (3.29) hingga (3.35) adalah perhitungan \textit{self-consistent} pada domain matsubara. Namun, sebelum melanjutkan perhitungan untuk iterasi selanjutnya pada domain matsubara, perhitungan yang sama dilkaukan pada domain riil, tanpa melakukan kembali perhitungan (3.31) hingga (3.33), yang dimana kuantitasnya didapat dari perhitungan pada domain matsubara. Terakhir, dilakukan perhitungan DOS dan okupansi elektron pada domain riil, dan kembali melanjutkan ke iterasi pada domain matsubara.
 
@@ -273,9 +273,37 @@ Fluktuasi okupansi akan digunakan sebagai metode penyelesaian impuritas alternat
 %-----------------------------------------------------------------------------%
 \section{Imlplementasi Numerik}
 
+Berikut akan dijelaskan bagaimana detail skematik dan implementasi metode penyelesaian DMFT dalam numerik.
+
 \subsection{Diagram Proses Perhitungan Numerik}
 
-\subsection{Implementasi dalam Bahasa Julia}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.90\textwidth]
+		{pics/general_workflow.pdf}
+		\caption{Skema umum pekerjaan numerik dari skripsi ini.}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.80\textwidth]
+		{pics/detail_progressblock1.pdf}
+		\caption{Detail blok diagram dari implementasi algoritma teori medan rata-rata dan iterasi pertubasi teori.}
+\end{figure}	
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.90\textwidth]
+		{pics/detail_progressblock2.pdf}
+		\caption{Detail blok diagram dari implementasi algoritma okupansi fluktuasi murni }
+\end{figure}	
+
+\begin{figure}
+	\centering
+	\includegraphics[angle=90,origin=c,width=0.750\textwidth]
+		{pics/detail_progressblock3.pdf}
+		\caption{Detail blok diagram dari implementasi algoritma okupansi fluktuasi sebagai koreksi dari iterasi pertubasi teori.}
+\end{figure}	
 
 %-----------------------------------------------------------------------------%
 
