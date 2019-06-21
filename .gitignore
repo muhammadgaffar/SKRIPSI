@@ -1,9 +1,9 @@
 *.log
 *.aux
 *.pdf
-*.ipynb
+*.svg
 doc/build
 doc/pics
 src/DMFT_OF
-ref/*.png
+ref/
 nb/.ipynb_checkpoints/
