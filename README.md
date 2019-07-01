@@ -7,7 +7,7 @@ Sistem terkolerasi kuat adalah sistem dimana skala energi untuk interaksi antar 
 ![workflow](figures/generalworkflow.png)
 
 #### DOKUMEN SKRIPSI DAN PRESENTASI SIDANG
-Dokumen Skripsi (PDF) bisa dilihat ![disini](/home/mgaffar/SKRIPSI/doc/thesis.pdf). Skripsi belum mengalami revisi finalisasi
+Dokumen Skripsi (PDF) bisa dilihat ![disini](doc/thesis.pdf). Skripsi belum mengalami revisi finalisasi
 
 Dokumen Presentasi Sidang, bisa dilihat [disini](https://slides.com/mgaffar/efek-fluktuasi-okupansi-pada-model-hubbard-3d-dalam-kerangka-dynamical-mean-field-theory)
 
