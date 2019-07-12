@@ -124,7 +124,7 @@ dan mengkonstruski suku diagram \textit{bubble} sebagai
 maka \textit{self-energy} orde kedua dapat ditulis
 \begin{align}
 \Sigma(i\omega_n) &= -\frac{U^2}{\beta^2}\sum_m \mathcal{G}(i\omega_n + i\nu_m)\Pi(i\nu_m)\notag\\
-&= -U^2 \int d\omega d\omega' d\omega'' D(\omega)D(\omega')D(\omega'') \frac{f(-\omega)f(\omega')f(-\omega'') + f(\omega)f(-\omega')f(\omega'')}{i\omega_n - \omega + \omega' - \omega''} \notag
+&= -U^2 \int d\omega \int d\omega' \int d\omega'' D(\omega)D(\omega')D(\omega'') \frac{f(-\omega)f(\omega')f(-\omega'') + f(\omega)f(-\omega')f(\omega'')}{i\omega_n - \omega + \omega' - \omega''}
 \end{align}
 dengan mengenal notasi
 \begin{align}
@@ -133,5 +133,5 @@ D^-(\omega) &= f(1 - \omega)D(\omega)
 \end{align}
 didapat
 \begin{align}
-\Sigma(\omega) = U\left< n_{i\bar{\sigma}} \right> - U^2 \int d\nu d\nu' d\nu'' \frac{[D^-(\nu)D^+(\nu')D^-(\nu'') + D^+(\nu)D^-(\nu')D^+(\nu'')]}{\omega + i0^+ - \nu + \nu' - \nu''}
+\Sigma(\omega) = U\left< n_{i\bar{\sigma}} \right> - U^2 \int d\nu \int d\nu' \int d\nu'' \frac{[D^-(\nu)D^+(\nu')D^-(\nu'') + D^+(\nu)D^-(\nu')D^+(\nu'')]}{\omega + i0^+ - \nu + \nu' - \nu''}
 \end{align}
