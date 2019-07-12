@@ -5,7 +5,7 @@
 %-----------------------------------------------------------------------------%
 \section{Pengukuran}
 %-----------------------------------------------------------------------------%
-Terdapat perbedaan formulasi\cite{fetter}, tetapi tetap ekuivalen secara matematis, terhadap fenomena mekanika kuantum, yakni formulasi Schrodinger dan formulasi Heisenberg. Pertama-tama nilai ekspetasi dari suatu operator $\mathcal{O}$ dari keadaan $\Psi$ adalh
+Terdapat perbedaan formulasi\cite{fetter}, tetapi tetap ekuivalen secara matematis, terhadap fenomena mekanika kuantum, yakni formulasi Schrodinger dan formulasi Heisenberg. Pertama-tama nilai ekspetasi dari suatu operator $\mathcal{O}$ dari keadaan $\Psi$ adalah
 \begin{align}
 \bar{\mathcal{O}} = \left\langle \Psi | \mathcal{O} | \Psi \right\rangle
 \end{align}
@@ -178,7 +178,7 @@ dimana
 \begin{align}
 \left\langle c^\dagger_{\bo{k}\sigma}c_{\bo{k}\sigma} \right\rangle_0 = \frac{1}{e^{\beta(\epsilon_{\bo{k}\sigma} - \mu)} + 1}
 \end{align}
-adalah jumlah okupansi yang diatur oleh distribusi Fermi-Dirac. Terlihat bahwa $G_{0,\bo{k}\sigma}(\tau = 0_-) = \left\langle c^\dagger_{\bo{k}\sigma} c_{\bo{k}\sigma} \right\rangle_0$. Dengan menggunakan transformasi fourier pada persamaan (2.31), maka fungsi Green matsubara yang tidak berinteraksi menjadi 
+adalah jumlah okupasi yang diatur oleh distribusi Fermi-Dirac. Terlihat bahwa $G_{0,\bo{k}\sigma}(\tau = 0_-) = \left\langle c^\dagger_{\bo{k}\sigma} c_{\bo{k}\sigma} \right\rangle_0$. Dengan menggunakan transformasi fourier pada persamaan (2.31), maka fungsi Green matsubara yang tidak berinteraksi menjadi 
 \begin{align}
 G_{0,\bo{k}\sigma}(i\omega_n) = \frac{1}{i\omega_n - \epsilon_\bo{k} + \mu}
 \end{align}
@@ -198,7 +198,7 @@ sehingga diberikan momentum $\bo{k}$ maka elektron hanya bisa memiliki energi se
 \subsection{Persamaan Dyson}
 %-----------------------------------------------------------------------------%
 
-Fungsi Green yang berinteraksi, atau biasanya disebut juga sebagai \textit{dressed propagator}, dapat ditulis sebagai sumasih tak berhingga dari diagram Feynman\cite{spektral}. Sumasih secara formal dapat dihitung, sehingga menghasilkan persamaan Dyson
+Fungsi Green yang berinteraksi, atau biasanya disebut juga sebagai \textit{dressed propagator}, dapat ditulis sebagai penjumlahan tak berhingga dari diagram Feynman\cite{spektral}. Penjumlahan secara formal dapat dihitung, sehingga menghasilkan persamaan Dyson
 \begin{align}
 G_{\bo{k}\sigma}(z) = \frac{1}{G^{-1}_{0,\bo{k}\sigma}(z) - \Sigma_\bo{k}(z)}
 \end{align}
@@ -212,7 +212,7 @@ dengan menggunakan persamaan (2.28), maka fungsi spektral menjadi
 \end{align}
 dikarenakan fungsi spektral bernilai non-negatif, maka nilai suku imajiner dari \textit{self-energy} harus bernilai non-positif. Untuk nilai \textit{self-energy} yang kecil maka sistem dapat dipandang sebagai \textit{Fermi liquid} dengan quasipartikel, dimana suku riil dari \textit{self-energy} beperilaku sebagai pergeseran energi dan suku imajiner sebagai perlebaran keadaan pada fungsi spektral. Pergeseran energi secara efektif, menormalisasikan massa quasipartikel dan lebar \textit{peak} sebanding dengan kebalikan dari paruh waktu quasipartikel. Untuk interaksi yang sangat kuat, puncak dari \textit{Fermi liquid} diganti dengan besar spektral secara kolektif.
 
-\textit{Self-energy} itu sendiri adalah sumasih tak berhingga dari semua diagram \textit{self-energy} yang tidak dapat direduksi kembali. Setelah \textit{self-energy} diketahui, maka fungsi Green dapat diketahui pula. Beberapa aproksimasi yang dilakukan dengan hanya mengambil beberapa bagian diagram saja dalam $\Sigma_\bo{k}$ diantaranya adalah Hartree-Fock, Random Phase Approximation atau Ladder Approximation\cite{ladder}. 
+\textit{Self-energy} itu sendiri adalah penjumlahan tak berhingga dari semua diagram \textit{self-energy} yang tidak dapat direduksi kembali. Setelah \textit{self-energy} diketahui, maka fungsi Green dapat diketahui pula. Beberapa aproksimasi yang dilakukan dengan hanya mengambil beberapa bagian diagram saja dalam $\Sigma_\bo{k}$ diantaranya adalah Hartree-Fock, Random Phase Approximation atau Ladder Approximation\cite{ladder}. 
 
 %-----------------------------------------------------------------------------%
 \subsection{Fungsi Green Lokal}
@@ -232,7 +232,7 @@ dimana $\lambda$ adalah volume pada ruang momentum, atau jumlah titik momentum y
 G_0(z) &= \frac{1}{\Lambda} \sum_\bo{k} \frac{1}{z - \epsilon_\bo{k} + \mu} \\
 \text{D}_0(\omega) &= \frac{1}{\Lambda} \sum_\bo{k} \rho_{0,\bo{k}}(\omega) = \frac{1}{\Lambda} \sum_\bo{k} \delta(\omega - \epsilon_\bo{k} + \mu )
 \end{align}
-$\text{D}_0(\omega)$ adalah DOS pada sistem yang tidak berinteraksi. Dikarenakan keterbergantungan terhadap momentum $\bo{k}$ hanya ada pada suku $\epsilon_\bo{k}$, maka sumasih terhadap momentum dapat diekspresikan sebagai integral terhadap energi dengan besar bobot sebesar $\text{D}_0(\omega)$ yang mengisyaratkan sebagai jumlah keadaan di energi $\omega$,
+$\text{D}_0(\omega)$ adalah DOS pada sistem yang tidak berinteraksi. Dikarenakan keterbergantungan terhadap momentum $\bo{k}$ hanya ada pada suku $\epsilon_\bo{k}$, maka penjumlahan terhadap momentum dapat diekspresikan sebagai integral terhadap energi dengan besar bobot sebesar $\text{D}_0(\omega)$ yang mengisyaratkan sebagai jumlah keadaan di energi $\omega$,
 \begin{align}
 G_0(z) = \frac{1}{\Lambda} \sum_\bo{k} \frac{1}{z - \epsilon_\bo{k} + \mu}  = \frac{1}{\Lambda} \sum_\bo{k} \frac{1}{z - \epsilon_\bo{k} + \mu} = \int d\xi \frac{\text{D}_0(\xi)}{z - \xi}
 \end{align}
@@ -259,7 +259,7 @@ sehingga suku interaksi Hamiltonian menjadi
 \begin{align}
 H_I = U\sum_i n_{i\uparrow} n_{i\downarrow}
 \end{align}
-dimana $n_{i\sigma} = c^\dagger_{i\sigma} c_{i\sigma}$ sebagai operator jumlah okupansi. Adanya okupansi ganda pada satu kisi atomik akan mengambil energi sebesar $U$ dikarenakan adanya interaksi elektron-elektron dalam satu orbital tersebut. $H_I$ bersifat diagonal pada ruang riil. 
+dimana $n_{i\sigma} = c^\dagger_{i\sigma} c_{i\sigma}$ sebagai operator jumlah okupasi. Adanya okupasi ganda pada satu kisi atomik akan mengambil energi sebesar $U$ dikarenakan adanya interaksi elektron-elektron dalam satu orbital tersebut. $H_I$ bersifat diagonal pada ruang riil. 
 
 Sedangkan elemen \textit{hopping} $t_{ij}$ dibatasi hanya untuk elemen orbital tetangga terdekatnya saja,
 \begin{align}
@@ -353,16 +353,16 @@ Sehingga, memetakan secara eksak dari permasalahan kisi fisis ke masalah impurit
 	\caption{ Pada DMFT, permasalahan kisi dipetakan sebagai kisi impuritas yang terkopel dengan medan tak berhingga }
 \end{figure}
 
-Kolam ini, dihitung secara \textit{self-consistent}, dimana terjadinya komunikasi interaksi antara kisi impuritas dengan kisi residunya. Dalam berjalannya waktu, elektron dapat datang dari kolam untuk mengisi kisi impuritas dan kembali lagi ke kolam (lihat gambar 2.7). Pada model kisi impuritas ini, konfigurasi yang mungkin terbatasi dimulai dari tidak terokupansi, satu elektron dengan spin up atau spin down, dan terokupansi oleh dua elektron dengan spin yang berbeda.
+Kolam ini, dihitung secara \textit{self-consistent}, dimana terjadinya komunikasi interaksi antara kisi impuritas dengan kisi residunya. Dalam berjalannya waktu, elektron dapat datang dari kolam untuk mengisi kisi impuritas dan kembali lagi ke kolam (lihat gambar 2.7). Pada model kisi impuritas ini, konfigurasi yang mungkin terbatasi dimulai dari tidak terokupasi, satu elektron dengan spin up atau spin down, dan terokupasi oleh dua elektron dengan spin yang berbeda.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.60\textwidth]
 		{pics/modelimpuritas2.png}
-	\caption{ DMFT menangkap dinamika elektron pada atom impuritas. Dilihat dari evolusi okupansinya dan fluktuasinya terhadap waktu. }
+	\caption{ DMFT menangkap dinamika elektron pada atom impuritas. Dilihat dari evolusi okupasinya dan fluktuasinya terhadap waktu. }
 \end{figure}
 
-Jika pada kisi dengan jumlah koordinasi jauh dari tak berhingga, yakni terbats, maka \textit{self-energy} hanyalah aproksimasi saja,
+Jika pada kisi dengan jumlah koordinasi jauh dari tak berhingga, yakni terbatas, maka \textit{self-energy} hanyalah aproksimasi saja,
 \begin{align}
 \Sigma(\bo{k},z) \approx \Sigma(z)
 \end{align}
@@ -386,7 +386,7 @@ dikarenakan setiap keadaan $\bo{k}$ berada pada interval energi $\epsilon_\bo{k}
 G_{\text{loc}}(z) = \int d\epsilon \frac{D(\epsilon)}{z - \epsilon + \mu - \Sigma(z)}
 \end{align}
 
-Secara praktik (dalam komputasi), lebih baik menggunakan persamaan (2.63) dibanding (2.62) untuk menghindari beratnya komputasi akibat sumasih $\bo{k}$ yang multi-dimensi dan jumlah $N_k$ yang besar, sehingga memakan komputasi sebesar $\mathcal{O}(N^d)$, dimana $d$ adalah jumlah dimensi kisi fisis.
+Secara praktik (dalam komputasi), lebih baik menggunakan persamaan (2.63) dibanding (2.62) untuk menghindari beratnya komputasi akibat penjumalahan $\bo{k}$ yang multi-dimensi dan jumlah $N_k$ yang besar, sehingga memakan komputasi sebesar $\mathcal{O}(N^d)$, dimana $d$ adalah jumlah dimensi kisi fisis.
 
 Persamaan (2.61) menjadi pusat dari DMFT, karena hal tersebut merefleksikan pemetaan dari kisi fisis ke model impuritas. Walaupun pemetaan kuantitas $G(\bo{k},z)$ diperlukan, tetapi kuantitas tersebutlah yang dicari dari perhitungan DMFT. Dengan kata lain, agar mendapatkan model impuritas yang benar, diperlukan perhitungan yang bersifat iteratif, sehingga akhirnya menuju pada perhitungan \textit{self-consistent}.
 

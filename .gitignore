@@ -1,9 +1,14 @@
 *.log
 *.aux
 *.svg
+*.tex
+*.sty
+*.txt
 doc/build
 doc/pics
 ref/
 src/DMFT_OF
 ref/
 nb/.ipynb_checkpoints/
+flymd.html
+flymd.md

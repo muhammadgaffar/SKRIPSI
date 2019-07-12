@@ -2,7 +2,7 @@
 \chapter{\babTiga}
 %-----------------------------------------------------------------------------%
 
-Pada bab ini, kita membahas model sistem yang dianalisis, dan kuantitas fisis yang dihitung. Selanjutnya, sebelum membahas pengembangan metode penyelesaian impuritas yang baru, kita terlebih dahulu membahas metode penyelesaian impuritas yang sederhana dari DMFT, yakni medan rata-rata, dan teori iterasi pertubasi, yang kita pelajari sebagai hasil pembanding dari metode penyelesaian impuritas yang kita kembangkan, yakni flutuasi okupansi.
+Pada bab ini, kita membahas model sistem yang dianalisis, dan kuantitas fisis yang dihitung. Selanjutnya, sebelum membahas pengembangan metode penyelesaian impuritas yang baru, kita terlebih dahulu membahas metode penyelesaian impuritas yang sederhana dari DMFT, yakni medan rata-rata, dan teori iterasi pertubasi, yang kita pelajari sebagai hasil pembanding dari metode penyelesaian impuritas yang kita kembangkan, yakni flutuasi okupasi.
 
 %-----------------------------------------------------------------------------%
 \section{Model Hamiltonian dan Kuantitas Fisis}
@@ -74,13 +74,13 @@ D(\omega) = - \frac{1}{\pi} \text{Im} [G(\omega + i0^+)]
 \end{align}
 Dari DOS ini kita dapat mempelajari fasa metal dan isolator dari sistem, dan transisi keduanya. Hal ini dilihat dari jumlah keadaan (\textit{spectral weight}) pada daerah energi fermi $\epsilon_f = \mu$. Dikarenakan hamiltonian Hubbard pada persamaan (3.2) yang digunakan pada skripsi ini mengakomodir $\mu =0$ untuk $U$ berapa saja, maka kita tinggal melihat \textit{spectral weight} pada energi $\omega = 0$. Ada dan tidaknya batas antar dua pita (gap) yang akan menentukan apakah sistem tersebut metal atau isolator.
 
-Kuantitas fisis kedua yang kita analisis berikutnya adalah besar magnetik sistem. Magnetik sistem secara sederhana dihitung dari perbedaan okupansi elektron dengan spin up dan spin down. Pada kasus half-filling dalam kisi bipartite, kondisi \textit{magnetic order} yang mungkin adalah antiferomagnetik, dan juga dikarenakan simetri keadaan Neel $\Sigma^A_\sigma = \Sigma^B_{\sigma'}$, maka hasil magnetisme secara keseluruhan bernilai nol, dimana $M_A = - M_B$. Namun, pada kondisi antiferomagnetik $M_A = - M_B \neq 0$, sehingga dengan disini kita menganalisis besar perbedaan okupansi spin up dan down untuk satu \textit{sublattice}. Dengan melihat perbedaan okupansi tersebut, kita bisa mempelajari apakah sistem berada dalam keadaan antiferomagnetik atau paramagnetik ($M_A = - M_B \approx 0$). 
+Kuantitas fisis kedua yang kita analisis berikutnya adalah besar magnetik sistem. Magnetik sistem secara sederhana dihitung dari perbedaan okupasi elektron dengan spin up dan spin down. Pada kasus half-filling dalam kisi bipartite, kondisi \textit{magnetic order} yang mungkin adalah antiferomagnetik, dan juga dikarenakan simetri keadaan Neel $\Sigma^A_\sigma = \Sigma^B_{\sigma'}$, maka hasil magnetisme secara keseluruhan bernilai nol, dimana $M_A = - M_B$. Namun, pada kondisi antiferomagnetik $M_A = - M_B \neq 0$, sehingga dengan disini kita menganalisis besar perbedaan okupasi spin up dan down untuk satu \textit{sublattice}. Dengan melihat perbedaan okupasi tersebut, kita bisa mempelajari apakah sistem berada dalam keadaan antiferomagnetik atau paramagnetik ($M_A = - M_B \approx 0$). 
 
-Okupansi sendiri dapat dihitung dari fungsi Green lokal,
+Okupasi sendiri dapat dihitung dari fungsi Green lokal,
 \begin{align}
 n_{i\sigma} = \frac{1}{\pi} \int d\omega \;  \text{Im} [G_{ii,\sigma}(\omega + i0^+)] f(\omega,T) = - \int d\omega\; D(\omega) f(\omega,T)
 \end{align}
-dimana $f(\omega,T)$ adalah distribusi fermi pada setiap keadaan energi $\epsilon$ dalam tempeartur $T$,
+dimana $f(\omega,T)$ adalah distribusi fermi pada setiap keadaan energi $\epsilon$ dalam temperatur $T$,
 \begin{align}
 f(\omega,T) = \frac{1}{\exp(\epsilon\beta) + 1}; \quad \beta = \frac{1}{k_BT}
 \end{align}
@@ -93,7 +93,7 @@ distribusi fermi diperlihatkan oleh gambar 3.2.
 	\caption{Distribusi elektron pada setiap energi diatur oleh distribusi fermi, diperlihatkan untuk temperatur yang berbeda.}
 \end{figure}
 
-Sehingga besar perbedaan okupansi atau magnetisasi untuk satu \textit{sublattice} dihitung dengan
+Sehingga besar perbedaan okupasi atau magnetisasi untuk satu \textit{sublattice} dihitung dengan
 \begin{align}
 M_i = \frac{n_{i\uparrow} - n_{i\downarrow}}{n_{i\uparrow} + n_{i\downarrow}}
 \end{align}
@@ -134,7 +134,7 @@ dengan jarak lattice di set $a = 1$. Sehingga DOS untuk kisi kubik pada kasus ti
 \begin{align}
 D_{0,\text{kubik}}(\omega) = \sum_\bo{k} \delta(\epsilon - \epsilon_\bo{k}) = \sum_{kx,ky,kz} \delta (\epsilon + 2t \left[ \cos(k_x) + \cos(k_y) + \cos(k_z) \right])
 \end{align}
-Bagusnya, DOS diatas masih bisa diturunkan secara analitik, sehingga tidak perlu melakukan perhitungan komputasi sumasih multi-dimensi dengan jumlah titik yang banyak sehingga memakan banyak sumberdaya komputasi. DOS diatas secara analitik (diturunkan pada lampiran 1), diberikan oleh\cite{anna}
+Bagusnya, DOS diatas masih bisa diturunkan secara analitik, sehingga tidak perlu melakukan perhitungan komputasi penjumlahan multi-dimensi dengan jumlah titik yang banyak sehingga memakan banyak sumberdaya komputasi. DOS diatas secara analitik (diturunkan pada lampiran 1), diberikan oleh\cite{anna}
 \begin{align}
 D_{0,\text{kubik}}(\omega) = \frac{1}{2\pi^3t}\int_{-1}^1 \frac{dz}{\sqrt{1-z^2}}K(m); \quad m = 1 - \left(\frac{\tilde{\omega} + z}{2}\right)^2
 \end{align}
@@ -160,7 +160,7 @@ Bentuk DOS kubik diperlihatkan pada gambar 3.4.
 \subsection{Medan Rata-Rata}
 %-----------------------------------------------------------------------------%
 
-Pendekatan medan rata-rata atau disebut juga pendekatan Hartree-Fock adalah pendekatan yang mengabaikan fluktuasi medan didalamnya\cite{mf}, yakni fluktuasi densitas elektron, yang dimana fluktuasinya didefinisikan sebagai $\Delta n_{i\sigma} \equiv n_{i\sigma} - \left< n_{i\sigma} \right>$, yakni jumlah perbedaan densitas elektron dari operator eksak $n_{i\sigma}$ dan okupansi rata-ratanya $\left< n_{i\sigma} \right>$. Dari relasi ini, didapatkan
+Pendekatan medan rata-rata atau disebut juga pendekatan Hartree-Fock adalah pendekatan yang mengabaikan fluktuasi medan didalamnya\cite{mf}, yakni fluktuasi densitas elektron, yang dimana fluktuasinya didefinisikan sebagai $\Delta n_{i\sigma} \equiv n_{i\sigma} - \left< n_{i\sigma} \right>$, yakni jumlah perbedaan densitas elektron dari operator eksak $n_{i\sigma}$ dan okupasi rata-ratanya $\left< n_{i\sigma} \right>$. Dari relasi ini, didapatkan
 $n_{i\sigma} \equiv \left< n_{i\sigma} \right> + \Delta n_{i\sigma}$. Maka operator interaksi elektron dalam kisi ditulis
 \begin{align}
 n_{i\uparrow}n_{i\downarrow} &= (\Delta n_{i\uparrow} + \left< n_{i\uparrow} \right>)\cdot (\Delta n_{i\downarrow} + \left< n_{i\downarrow} \right>)\notag\\
@@ -188,7 +188,7 @@ G_{i\sigma}(\zeta) = \frac{1}{\zeta - \epsilon'_{\bo{k},\sigma}}
 \end{align}
 dimana $\epsilon'_{\bo{k},\sigma}$ adalah nilai eigen untuk masing-masing komponen $<i\sigma>$ pada matriks 3.20.
 
-Perhitungan \textit{self-consistent} dilakukan pertama-tama dengan menebak okupansi untuk parameter $<U,t>$, yang akan dimasukkan pada matriks (3.20). Selanjutnya menghitung fungsi Green lokal pada persamaan (3.21), dan kemudian menghitung okupansi elektron yang diberikan pada persamaan (3.9). Konvergensi tercapai jika jumlah perbedaan hasil okupansi tebakan dan hitungan kurang dari nilai toleransi yang diberikan.
+Perhitungan \textit{self-consistent} dilakukan pertama-tama dengan menebak okupasi untuk parameter $<U,t>$, yang akan dimasukkan pada matriks (3.20). Selanjutnya menghitung fungsi Green lokal pada persamaan (3.21), dan kemudian menghitung okupasi elektron yang diberikan pada persamaan (3.9). Konvergensi tercapai jika jumlah perbedaan hasil okupasi tebakan dan hitungan kurang dari nilai toleransi yang diberikan.
 
 %-----------------------------------------------------------------------------%
 \subsection{Teori Iterasi Pertubasi (IPT)}
@@ -212,7 +212,7 @@ G(i\omega_n) = \int d\omega \; \frac{D(\omega)}{i\omega_n - \omega}
 \end{align}
 Penurunan analitik \textit{analytical continuation} bagian ini diturunkan pada Lampiran B, dimana didapat \textit{self-energy} pada domain riil sebagai
 \begin{align}
-\Sigma(\omega) = U\left< n_{i\bar{\sigma}} \right> - U^2 \int d\nu \int d\nu' \int d\nu'' \frac{[D^-(\nu)D^+(\nu')D^-(\nu'') + D^+(\nu)D^-(\nu')D^+(\nu'')]}{\omega + i0^+ - \nu + \nu' - \nu''}\notag
+\Sigma(\omega) = U\left< n_{i\bar{\sigma}} \right> - U^2 \int d\nu d\nu' d\nu'' \frac{[D^-(\nu)D^+(\nu')D^-(\nu'') + D^+(\nu)D^-(\nu')D^+(\nu'')]}{\omega + i0^+ - \nu + \nu' - \nu''}\notag
 \end{align}
 dimana notasi $D^+$ dan $D^-$, adalah
 \begin{align}
@@ -221,7 +221,8 @@ D^-(\omega) &= f(1 - \omega)D(\omega)
 \end{align}
 Dengan mengambil nilai imajinernya, dan mengintegrasi terhadap $\nu''$, didapat
 \begin{align}
-\text{Im}\Sigma(\omega) = -\pi U^2 \int d\nu \int d\nu' [D^-(\nu)D^+(\nu')D^-(\omega - \nu + \nu') + D^+(\nu)D^-(\nu')D^+(\omega - \nu + \nu')]
+\text{Im}\Sigma(\omega) = -\pi U^2 \int d\nu d\nu' &[D^-(\nu)D^+(\nu')D^-(\omega - \nu + \nu') \notag\\
+&+ D^+(\nu)D^-(\nu')D^+(\omega - \nu + \nu')]
 \end{align}
 dimana nilai riil dari $\text{Re}\Sigma(\omega)$ didapat dari relasi kramers-kronig, yang hal ini dapat digunakan untuk fungsi kasual.
 \begin{align}
@@ -229,16 +230,16 @@ dimana nilai riil dari $\text{Re}\Sigma(\omega)$ didapat dari relasi kramers-kro
 \end{align}
 
 %-----------------------------------------------------------------------------%
-\section{Fluktuasi Okupansi}
+\section{Fluktuasi okupasi}
 %-----------------------------------------------------------------------------%
 
-Perhitungan dengan medan rata-rata atau pendekatan Hartree-Fock, merupakan pendekatan yang menghilangkan fluktuasi okupansi didalamnya. Melalui modifikasi medan rata-rata, kami membuat model impuritas yang baru dengan memasukkan suku fluktuasi. Suku fluktuasi ini tidak sepenuhnya perhitungan yang dilakukan secara kuantum, melain suatu kuantitas semi-klasik dengan konsep yang sama seperti perhitungan medan rata-rata untuk kopel elektron-fonon\cite{el-ph} dan interaksi magnetik Hund\cite{hund}. Konsep ide ini dimulai dengan memodifikasi suku interaksi pada pada model Hubbard menjadi
+Perhitungan dengan medan rata-rata atau pendekatan Hartree-Fock, merupakan pendekatan yang menghilangkan fluktuasi okupasi didalamnya. Melalui modifikasi medan rata-rata, kami membuat model impuritas yang baru dengan memasukkan suku fluktuasi. Suku fluktuasi ini tidak sepenuhnya perhitungan yang dilakukan secara kuantum, melain suatu kuantitas semi-klasik dengan konsep yang sama seperti perhitungan medan rata-rata untuk kopel elektron-fonon\cite{el-ph} dan interaksi magnetik Hund\cite{hund}. Konsep ide ini dimulai dengan memodifikasi suku interaksi pada pada model Hubbard menjadi
 \begin{align}
 U \sum_i n_{i\uparrow} n _{i\downarrow} &= \frac{U}{2} \sum_i \left( n_{i\uparrow} n _{i\downarrow} + n_{i\uparrow} n _{i\downarrow} \right)\notag\\
 &= \frac{U}{2} \sum_i \left[ n_{i\uparrow} \left(\left< n _{i\downarrow} \right> + \delta_{i\downarrow} \right) + n _{i\downarrow} \left( \left< n_{i\uparrow} \right> + \delta_{i\uparrow} \right) \right]
 \end{align}
 
-dimana $\delta_{i\sigma}$ adalah fluktuasi okupansi elektron. Fluktuasi ini kita jadikan sebagai kuantitas kontinu klasik yang bervariasi dari nilai minimum okupansi ($n_{min} = -1$) hingga nilai maksimumnya ($n_{max} = 1$). Perhitungan ini pertama-tama dilakukan di domain matsubara. Hal ini dikarenakan pada domain matsubara kita dapat menghitung pemberat atau probabilitas masing-masing fluktuasi okupansi. Pertama-tama, \textit{self-energy} lokal dinyatakan dalam
+dimana $\delta_{i\sigma}$ adalah fluktuasi okupasi elektron. Fluktuasi ini kita jadikan sebagai kuantitas kontinu klasik yang bervariasi dari nilai minimum okupasi ($n_{min} = -1$) hingga nilai maksimumnya ($n_{max} = 1$). Perhitungan ini pertama-tama dilakukan di domain matsubara. Hal ini dikarenakan pada domain matsubara kita dapat menghitung pemberat atau probabilitas masing-masing fluktuasi okupasi. Pertama-tama, \textit{self-energy} lokal dinyatakan dalam
 \begin{align}
 \Sigma_{\text{loc},\sigma} = \frac{U}{2}\left(\left< n_\sigma \right> + \delta_\sigma\right) 
 \end{align}
@@ -246,7 +247,7 @@ dari sini, selanjutnya kita mengkonstruksi fungsi Green lokal interaksi $\tilde{
 \begin{align}
 \tilde{G}(i\omega_n, \delta_{\uparrow}, \delta_{\downarrow}) = \left[ \mathcal{G}^{-1}(i\omega_n) - \Sigma_{\text{loc},\sigma}^{-1} \right]^{-1}
 \end{align}
-Dari sini, aksi efektif dapat dibuat untuk fluktuasi okupansi
+Dari sini, aksi efektif dapat dibuat untuk fluktuasi okupasi
 \begin{align}
 S_{\text{eff}}(\delta_\uparrow,\delta_\downarrow) = - \sum_n \ln \det \left[ \mathcal{G}^{-1}(i\omega_n) \tilde{G}(i\omega_n,\delta_\uparrow,\delta_\downarrow) \right] e^{i\omega_n 0^+}
 \end{align}
@@ -266,9 +267,9 @@ maka \textit{self-energy} dihitung kembali dari persamaan Dyson dengan menggunak
 \begin{align}
 \Sigma(i\omega_n) = \left[\mathcal{G}^{-1}(i\omega_n) - G_{\text{ave}}(i\omega_n)\right]^{-1}
 \end{align}
-Perhitungan ini dari persamaan (3.29) hingga (3.35) adalah perhitungan \textit{self-consistent} pada domain matsubara. Namun, sebelum melanjutkan perhitungan untuk iterasi selanjutnya pada domain matsubara, perhitungan yang sama dilkaukan pada domain riil, tanpa melakukan kembali perhitungan (3.31) hingga (3.33), yang dimana kuantitasnya didapat dari perhitungan pada domain matsubara. Terakhir, dilakukan perhitungan DOS dan okupansi elektron pada domain riil, dan kembali melanjutkan ke iterasi pada domain matsubara.
+Perhitungan ini dari persamaan (3.29) hingga (3.35) adalah perhitungan \textit{self-consistent} pada domain matsubara. Namun, sebelum melanjutkan perhitungan untuk iterasi selanjutnya pada domain matsubara, perhitungan yang sama dilkaukan pada domain riil, tanpa melakukan kembali perhitungan (3.31) hingga (3.33), yang dimana kuantitasnya didapat dari perhitungan pada domain matsubara. Terakhir, dilakukan perhitungan DOS dan okupasi elektron pada domain riil, dan kembali melanjutkan ke iterasi pada domain matsubara.
 
-Fluktuasi okupansi akan digunakan sebagai metode penyelesaian impuritas alternatif untuk mencari keadaan okupansi atau magnetisme yang lebih tepat. Sehingga akan metode fluktuasi okupansi ini akan dievaluasi dengan melihat bagaimana perbedaan relatifnya terhadap metode penyelesaian impuritas medan rata-rata biasa dan IPT. Fluktuasi okupansi akan juga coba digunakan sebagai metode koreksi dari IPT, untuk melihat apakah fluktuasi okupansi dapat memperbaiki hasil menjadi lebih baik terhadap hasil-hasil literatur yang menggunakan metode penyelesaian impuritas yang lebih eksak seperti teknik QMC.
+Fluktuasi okupasi akan digunakan sebagai metode penyelesaian impuritas alternatif untuk mencari keadaan okupasi atau magnetisme yang lebih tepat. Sehingga akan metode fluktuasi okupasi ini akan dievaluasi dengan melihat bagaimana perbedaan relatifnya terhadap metode penyelesaian impuritas medan rata-rata biasa dan IPT. Fluktuasi okupasi akan juga coba digunakan sebagai metode koreksi dari IPT, untuk melihat apakah fluktuasi okupasi dapat memperbaiki hasil menjadi lebih baik terhadap hasil-hasil literatur yang menggunakan metode penyelesaian impuritas yang lebih eksak seperti teknik QMC.
 
 %-----------------------------------------------------------------------------%
 \section{Imlplementasi Numerik}
@@ -286,23 +287,23 @@ Berikut akan dijelaskan bagaimana detail skematik dan implementasi metode penyel
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.80\textwidth]
+	\includegraphics[width=0.750\textwidth]
 		{pics/detail_progressblock1.pdf}
 		\caption{Detail blok diagram dari implementasi algoritma teori medan rata-rata dan iterasi pertubasi teori.}
 \end{figure}	
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.90\textwidth]
+	\includegraphics[angle=90,origin=c,width=0.90\textwidth]
 		{pics/detail_progressblock2.pdf}
-		\caption{Detail blok diagram dari implementasi algoritma okupansi fluktuasi murni }
+		\caption{Detail blok diagram dari implementasi algoritma okupasi fluktuasi murni }
 \end{figure}	
 
 \begin{figure}
 	\centering
 	\includegraphics[angle=90,origin=c,width=0.750\textwidth]
 		{pics/detail_progressblock3.pdf}
-		\caption{Detail blok diagram dari implementasi algoritma okupansi fluktuasi sebagai koreksi dari iterasi pertubasi teori.}
+		\caption{Detail blok diagram dari implementasi algoritma okupasi fluktuasi sebagai koreksi dari iterasi pertubasi teori.}
 \end{figure}	
 
 %-----------------------------------------------------------------------------%

@@ -1,7 +1,7 @@
 module num
 
 using DSP
-
+ran
 export trapz, conv_same, convergent, mixing
 
 function trapz(x,y)
